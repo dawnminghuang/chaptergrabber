@@ -84,8 +84,8 @@ namespace JarrettVance.ChapterTools
       ContextMenu m = new ContextMenu();
       m.MenuItems.Add(new MenuItem("TagChimp",
         (s, args) => {grabber = new TagChimpGrabber(); Search();}));
-      m.MenuItems.Add(new MenuItem("MetaService",
-        (s, args) => {grabber = new MetaServiceGrabber(); Search();}));
+      //m.MenuItems.Add(new MenuItem("MetaService",
+      //  (s, args) => {grabber = new MetaServiceGrabber(); Search();}));
       btnSearch.ContextMenu = m;
 
       LoadFpsMenus();
