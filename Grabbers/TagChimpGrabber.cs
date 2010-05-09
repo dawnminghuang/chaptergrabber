@@ -34,7 +34,7 @@ namespace JarrettVance.ChapterTools.Grabbers
         var titles = from m in searchXml.Descendants("movie")
                      select new SearchResult
                      {
-                       Id = (string)m.Element("movieID"),
+                       Id = (string)m.Element("tagChimpID"),
                        Name = (string)m.Descendants("movieTitle").First()
                      };
         OnSearchComplete();
@@ -47,13 +47,14 @@ namespace JarrettVance.ChapterTools.Grabbers
     {
       //if (chapters.Count == 0) throw new Exception("Cannot import names to an empty chapter list.");
 
-      var movie = xml.Descendants("movie").Where(m => (int)m.Element("movieID") == id).FirstOrDefault();
-      var names = from c in movie.Descendants("chapter")
-                  select new
-                  {
-                    Number = (int)c.Element("chapterNumber"),
-                    Title = (string)c.Element("chapterTitle")
-                  };
+      var movie = xml.Descendants("movie").Where(m => (int)m.Element("tagChimpID") == id).FirstOrDefault();
+      var names = movie.Descendants("chapterNumber").Select(c => new { Number = int.Parse(c.Value), Title = c.ElementsAfterSelf("chapterTitle").First().Value });
+      //var names = from c in movie.Descendants("chapter")
+      //            select new
+      //            {
+      //              Number = (int)c.Element("chapterNumber"),
+      //              Title = (string)c.Element("chapterTitle")
+      //            };
       names = names.OrderBy(n => n.Number).Distinct();
       if (chapters.Count > 0)
       {
