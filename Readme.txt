@@ -13,6 +13,14 @@ You must have .NET Framework 3.5 available from WindowsUpdate.
 
 Whats New?
 --------------------
+2010-05-09 : v3.8
+Removed MetaGrabber
+Fixed TagChimpGrabber
+
+2009-05-01 : v3.7 
+Attempt to fix globalization issues for non-US cultures
+Source code included
+
 2009-01-23 : v3.6
 HD-DVD support added.  You can now extract chapters from the disc or directly from an XPL file.
 4 new output formats added: TsMuxeR Meta, Timecodes, Celltimes, x264 QP File.
