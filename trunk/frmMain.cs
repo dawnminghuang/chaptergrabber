@@ -46,6 +46,7 @@ namespace JarrettVance.ChapterTools
   /// </summary>
   public partial class frmMain : System.Windows.Forms.Form
   {
+      public string StartupFile { get; set; }
 
     private ChapterGrabber grabber = null;
     private ChapterInfo pgc;
@@ -53,6 +54,8 @@ namespace JarrettVance.ChapterTools
 
     private void frmMain_Load(object sender, System.EventArgs e)
     {
+        if (Settings.Default.AutoCheckForUpdate) new System.Threading.Thread(() => CheckForUpdate()).Start();
+
       this.Height = Math.Min(560, Screen.GetWorkingArea(this).Height - 30);
       this.listChapters.Columns.Add("Time", 80, HorizontalAlignment.Left);
       this.listChapters.Columns.Add("Name", 190, HorizontalAlignment.Left);
@@ -109,6 +112,55 @@ namespace JarrettVance.ChapterTools
           (s, args) => ChangeLang(((ToolStripMenuItem)s).Tag as string)) { Tag = mi.Tag }).ToArray());
       RefreshRecent();
       OnNew();
+
+        if (!string.IsNullOrEmpty(StartupFile)) OpenFile(StartupFile);
+    }
+
+    private int CheckForUpdate()
+    {
+        try
+        {
+            System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
+            Version appVersion = a.GetName().Version;
+
+            //download manifest
+            XDocument doc = XDocument.Load("http://jvance.com/files/ChapterGrabber.manifest");
+
+            //if newer, display dialog
+            Version newestVersion = new Version((string)doc.Root.Element("version"));
+            if (newestVersion > appVersion)
+            {
+                ShowUpdateDialog(appVersion, newestVersion, doc);
+                return 2; //update available
+            }
+            return 1; //no update available
+        }
+        catch (Exception ex)
+        {
+            Trace.WriteLine(ex);
+        }
+        return 0; //failed
+    }
+
+    void ShowUpdateDialog(Version appVersion, Version newestVersion, XDocument doc)
+    {
+        if (InvokeRequired)
+        {
+            Invoke(new Action<Version, Version, XDocument>(ShowUpdateDialog), appVersion, newestVersion, doc);
+            return;
+        }
+
+        using (frmUpdate f = new frmUpdate())
+        {
+            f.Text = string.Format(f.Text, appVersion);
+            f.MoreInfoLink = (string)doc.Root.Element("info");
+            f.Info = string.Format(f.Info, newestVersion, (DateTime)doc.Root.Element("date"));
+            if (f.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                // Navigate to a URL.
+                System.Diagnostics.Process.Start((string)doc.Root.Element("download"));
+            }
+        }
     }
 
     void LoadFpsMenus()
@@ -174,23 +226,29 @@ namespace JarrettVance.ChapterTools
 
     private void menuFileSave_Click(object sender, System.EventArgs e)
     {
-      saveFileDialog.Filter = "Chapter Text File (*.txt)|*.txt|" + 
+        saveFileDialog.Filter = 
+        "Chapters File (*.chapters)|*.chapters|" + 
+        "Chapters Text File (*.txt)|*.txt|" + 
         "Matroska Chapter XML File (*.xml)|*.xml|" + 
-        "ChapterGrabber XML File (*.chapters)|*.chapters|" + 
         "TsMuxeR Meta Text File (*.txt)|*.txt|" +
         "Celltimes Text File (*.txt)|*.txt|" +
         "x264 QP File (*.txt)|*.txt|" +
         "Timecodes Text File (*.txt)|*.txt|" +
         "All Files (*.*)|*.*";
+      
       saveFileDialog.RestoreDirectory = true;
       saveFileDialog.FileName = (pgc.Title == null ? pgc.SourceName : pgc.Title)
         + Settings.Default.LastSaveExt;
+      
+        //Note: filter index is one based (dumb)
       switch (Settings.Default.LastSaveExt)
       {
-        case ".txt": saveFileDialog.FilterIndex = 1; break;
-        case ".xml": saveFileDialog.FilterIndex = 2; break;
+          case ".chapters": saveFileDialog.FilterIndex = 1; break;
+        case ".txt": saveFileDialog.FilterIndex = 2; break;
+        case ".xml": saveFileDialog.FilterIndex = 3; break;
         default: saveFileDialog.FilterIndex = 8; break;
       }
+
       if (saveFileDialog.ShowDialog() == DialogResult.OK)
       {
         string ext = Path.GetExtension(saveFileDialog.FileName).ToLower();
@@ -208,6 +266,7 @@ namespace JarrettVance.ChapterTools
         else
           pgc.Save(saveFileDialog.FileName);
         Settings.Default.LastSaveExt = ext;
+        Settings.Default.Save();
       }
     }
 
@@ -295,7 +354,7 @@ namespace JarrettVance.ChapterTools
 
     private void menuFileOpen_Click(object sender, System.EventArgs e)
     {
-      openFileDialog.Filter = "Supported Files |*.ifo;*.xpl;*.mpls;*.txt;*.xml;*.chapters|DVD IFO Files (*.ifo)|*.ifo|HD-DVD Xml Playlist Files (*.xpl)|*.xpl|Blu-Ray Playlist Files (*.mpls)|*.mpls|Chapter Text Files (*.txt)|*.txt|Matroska XML Files (*.xml)|*.xml|ChapterGrabber XML Files (*.chapters)|*.chapters|All files (*.*)|*.*";
+      openFileDialog.Filter = "Supported Files |*.ifo;*.xpl;*.mpls;*.txt;*.xml;*.chapters|DVD IFO Files (*.ifo)|*.ifo|HD-DVD Xml Playlist Files (*.xpl)|*.xpl|Blu-Ray Playlist Files (*.mpls)|*.mpls|Chapters Text Files (*.txt)|*.txt|Matroska XML Files (*.xml)|*.xml|Chapters Files (*.chapters)|*.chapters|All files (*.*)|*.*";
       openFileDialog.FilterIndex = 0;
       openFileDialog.AutoUpgradeEnabled = true;
 
@@ -319,7 +378,7 @@ namespace JarrettVance.ChapterTools
       }
     }
 
-    void OpenFile(string file)
+    public void OpenFile(string file)
     {
       Cursor = Cursors.WaitCursor;
       tsslStatus.Text = "Parsing chapters from file...";
@@ -662,9 +721,20 @@ namespace JarrettVance.ChapterTools
       pgc.Title = txtTitle.Text;
     }
 
-    private void testToolStripMenuItem_Click(object sender, EventArgs e)
+    private void miUpdate_Click(object sender, EventArgs e)
     {
+        int result = CheckForUpdate();
+
+        if (result == 0)
+            MessageBox.Show(this, "Failed to check for update.  Please ty again later.", "Warning");
+        else if (result == 1)
+            MessageBox.Show(this, "There are no updates available at this time.", "Update Check");
     }
 
+    private void miAutoCheck_Click(object sender, EventArgs e)
+    {
+        Settings.Default.AutoCheckForUpdate = miAutoCheck.Checked;
+        Settings.Default.Save();
+    }
   }
 }

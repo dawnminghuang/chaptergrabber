@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("http://jvance.com/pages/ChapterGrabber.xhtml")]
 [assembly: AssemblyProduct("ChapterGrabber")]
-[assembly: AssemblyCopyright("Copyright 2003-2008 Jarrett Vance")]
+[assembly: AssemblyCopyright("Copyright 2003-2010 Jarrett Vance")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 
@@ -26,7 +26,7 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("3.8")]
+[assembly: AssemblyVersion("4.0")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 
@@ -56,3 +56,4 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyFile("")]
 [assembly: AssemblyKeyName("")]
+[assembly: AssemblyFileVersionAttribute("4.0")]

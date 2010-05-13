@@ -34,10 +34,10 @@
       <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="ConfigVersion" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">3.7</Value>
+      <Value Profile="(Default)">4.0</Value>
     </Setting>
     <Setting Name="LastSaveExt" Type="System.String" Scope="User">
-      <Value Profile="(Default)">.txt</Value>
+      <Value Profile="(Default)">.chapters</Value>
     </Setting>
     <Setting Name="DefaultLangCode" Type="System.String" Scope="Application">
       <Value Profile="(Default)">eng</Value>
@@ -66,6 +66,12 @@
     </Setting>
     <Setting Name="LastSaveFilterIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="AutoCheckForUpdate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="RemoteManifest" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://jvance.com/files/ChapterGrabber.manifest</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -7,7 +7,7 @@
     <ProjectGuid>{CA7A6315-94D9-4070-9C1A-B59CDB8A1CA8}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>Connect to Internet.ico</ApplicationIcon>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>ChapterGrabber</AssemblyName>
@@ -20,27 +20,39 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>JarrettVance.ChapterTools</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>JarrettVance.ChapterTools.frmMain</StartupObject>
+    <StartupObject>JarrettVance.ChapterTools.Program</StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <PublishUrl>publish\</PublishUrl>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <PublishUrl>ftp://ftp.jvance.com/wwwroot/files/</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <InstallUrl>http://jvance.com/files/</InstallUrl>
+    <SupportUrl>http://jvance.com/pages/ChapterGrabber.xhtml</SupportUrl>
+    <ErrorReportUrl>http://jvance.com/pages/ChapterGrabber.xhtml</ErrorReportUrl>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>ChapterGrabber</ProductName>
+    <PublisherName>JVance Software</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>13</ApplicationRevision>
+    <ApplicationVersion>3.9.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -93,6 +105,22 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>D4701572991CB767CB6F53E9BF0E23762034B7C2</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ChapterGrabber_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System">
       <Name>System</Name>
@@ -117,6 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icon.ico" />
     <Content Include="Readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -160,12 +189,19 @@
     <Compile Include="frmStreamSelect.Designer.cs">
       <DependentUpon>frmStreamSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdate.Designer.cs">
+      <DependentUpon>frmUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Grabber.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ChapterExtractor.cs" />
     <Compile Include="ChapterInfo.cs" />
     <Compile Include="Grabbers\TagChimpGrabber.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Pathing\BasePath.cs" />
     <Compile Include="Pathing\DirectoryPath.cs" />
     <Compile Include="Pathing\DirectoryPathAbsolute.cs" />
@@ -189,6 +225,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Content Include="ChapterGrabber.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="frmAboutBox.resx">
       <DependentUpon>frmAboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmStreamSelect.resx">
       <DependentUpon>frmStreamSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdate.resx">
+      <DependentUpon>frmUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -236,6 +278,14 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FileAssociation Include=".chapters">
+      <Visible>False</Visible>
+      <Description>Video Chapters</Description>
+      <Progid>application/xml+chapters</Progid>
+      <DefaultIcon>Icon.ico</DefaultIcon>
+    </FileAssociation>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
