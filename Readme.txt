@@ -5,14 +5,21 @@ What is it?
 ChapterGrabber is made to extract chapter times from DVD and
 BluRay discs and combine them with chapter names from the 
 internet.  It produces chapter text files that are useful when
-muxing ogg media and matroska files.
+muxing matroska or mp4 files.
 
 Install
 --------------------
-You must have .NET Framework 3.5 available from WindowsUpdate.
+You must have .NET Framework 3.5 available from Windows Update.
 
 Whats New?
 --------------------
+2010-05-13 : v4.0
+Added update-checking and auto notification
+Added chapters file association
+
+2010-05-10 : v3.9
+Update TagChimpGrabber to specify type of movie
+
 2010-05-09 : v3.8
 Removed MetaGrabber
 Fixed TagChimpGrabber
@@ -119,3 +126,6 @@ Author
 For bug report, new feature use:
 http://jvance.com/pages/ChapterGrabber.xhtml
 
+Source Code
+--------------------
+http://code.google.com/p/chaptergrabber/

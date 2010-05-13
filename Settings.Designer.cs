@@ -106,7 +106,7 @@ namespace JarrettVance.ChapterTools {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3.7")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.0")]
         public string ConfigVersion {
             get {
                 return ((string)(this["ConfigVersion"]));
@@ -115,7 +115,7 @@ namespace JarrettVance.ChapterTools {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".txt")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".chapters")]
         public string LastSaveExt {
             get {
                 return ((string)(this["LastSaveExt"]));
@@ -183,6 +183,30 @@ namespace JarrettVance.ChapterTools {
             }
             set {
                 this["LastSaveFilterIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoCheckForUpdate {
+            get {
+                return ((bool)(this["AutoCheckForUpdate"]));
+            }
+            set {
+                this["AutoCheckForUpdate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://jvance.com/files/ChapterGrabber.manifest")]
+        public string RemoteManifest {
+            get {
+                return ((string)(this["RemoteManifest"]));
+            }
+            set {
+                this["RemoteManifest"] = value;
             }
         }
     }
