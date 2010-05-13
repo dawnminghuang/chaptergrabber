@@ -21,7 +21,7 @@ namespace JarrettVance.ChapterTools.Grabbers
     {
       using (WebClient wc = new WebClient())
       {
-        string url = "https://www.tagchimp.com/ape/lookup.php?token=10615158044869B9D96D50D&type=search&title={0}&totalChapters={1}";
+        string url = "https://www.tagchimp.com/ape/lookup.php?token=10615158044869B9D96D50D&type=search&title={0}&totalChapters={1}&videoKind=Movie";
         url = string.Format(url, Uri.EscapeUriString(chapterInfo.Title), chapterInfo.Chapters.Count);
           //Uri.EscapeUriString
         //TODO: update to use streaming rather than downloading complete.
