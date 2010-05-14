@@ -227,6 +227,10 @@
     </Compile>
     <Content Include="ChapterGrabber.manifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Updater.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="frmAboutBox.resx">
       <DependentUpon>frmAboutBox.cs</DependentUpon>

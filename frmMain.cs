@@ -83,6 +83,7 @@ namespace JarrettVance.ChapterTools
 
       miIgnoreShortLastChapter.Checked = Settings.Default.IgnoreShortLastChapter;
       miImportDurations.Checked = Settings.Default.ImportDurations;
+        miAutoCheck.Checked = Settings.Default.AutoCheckForUpdate;
 
       ContextMenu m = new ContextMenu();
       m.MenuItems.Add(new MenuItem("TagChimp",
@@ -124,8 +125,7 @@ namespace JarrettVance.ChapterTools
             Version appVersion = a.GetName().Version;
 
             //download manifest
-            XDocument doc = XDocument.Load("http://jvance.com/files/ChapterGrabber.manifest");
-
+            XDocument doc = XDocument.Load(Settings.Default.RemoteManifest);
             //if newer, display dialog
             Version newestVersion = new Version((string)doc.Root.Element("version"));
             if (newestVersion > appVersion)
@@ -155,10 +155,12 @@ namespace JarrettVance.ChapterTools
             f.Text = string.Format(f.Text, appVersion);
             f.MoreInfoLink = (string)doc.Root.Element("info");
             f.Info = string.Format(f.Info, newestVersion, (DateTime)doc.Root.Element("date"));
+            f.Manifest = doc;
             if (f.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 // Navigate to a URL.
-                System.Diagnostics.Process.Start((string)doc.Root.Element("download"));
+                System.Diagnostics.Process.Start("Updater.exe", "\"" + f.ManifestFile + "\" \"" + Application.ExecutablePath + "\"");
+                this.Close();
             }
         }
     }
@@ -733,6 +735,7 @@ namespace JarrettVance.ChapterTools
 
     private void miAutoCheck_Click(object sender, EventArgs e)
     {
+        miAutoCheck.Checked = !miAutoCheck.Checked;
         Settings.Default.AutoCheckForUpdate = miAutoCheck.Checked;
         Settings.Default.Save();
     }

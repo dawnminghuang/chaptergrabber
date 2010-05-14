@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblInfo = new System.Windows.Forms.Label();
             this.linkInfo = new System.Windows.Forms.LinkLabel();
-            this.btnDownload = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSkip = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -67,19 +67,20 @@
             this.linkInfo.Text = "More Info";
             this.linkInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkInfo_LinkClicked);
             // 
-            // btnDownload
+            // btnUpdate
             // 
-            this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownload.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnDownload.Image = ((System.Drawing.Image)(resources.GetObject("btnDownload.Image")));
-            this.btnDownload.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDownload.Location = new System.Drawing.Point(304, 90);
-            this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(66, 40);
-            this.btnDownload.TabIndex = 3;
-            this.btnDownload.Text = "Download";
-            this.btnDownload.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdate.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnUpdate.Location = new System.Drawing.Point(304, 90);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(66, 40);
+            this.btnUpdate.TabIndex = 3;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSkip
             // 
@@ -97,14 +98,14 @@
             // 
             // frmUpdate
             // 
-            this.AcceptButton = this.btnDownload;
+            this.AcceptButton = this.btnUpdate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSkip;
             this.ClientSize = new System.Drawing.Size(389, 143);
             this.ControlBox = false;
             this.Controls.Add(this.btnSkip);
-            this.Controls.Add(this.btnDownload);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.linkInfo);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.label1);
@@ -112,6 +113,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUpdate";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ChapterGrabber {0}";
             this.ResumeLayout(false);
@@ -124,7 +127,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.LinkLabel linkInfo;
-        private System.Windows.Forms.Button btnDownload;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnSkip;
     }
 }
