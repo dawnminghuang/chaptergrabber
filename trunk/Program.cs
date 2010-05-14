@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.IO;
+using System.Threading;
 
 namespace JarrettVance.ChapterTools
 {
@@ -16,13 +18,41 @@ namespace JarrettVance.ChapterTools
         [STAThread]
         static void Main(string[] args)
         {
+            // register file association
             Register(".chapters", "application/xml+chapters", "Video Chapters", Application.ExecutablePath, Application.ExecutablePath, 0);
+
+            Updater();
 
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             Application.EnableVisualStyles();
             var f = new frmMain();
             if (args.Length > 0) f.StartupFile = args[0];
             Application.Run(f);
+        }
+
+        private static void Updater()
+        {
+            ThreadPool.QueueUserWorkItem((x) =>
+                {
+                    Thread.Sleep(1000);
+
+                    // rename updater after update
+                    try
+                    {
+                        string appPath = Path.GetDirectoryName(Application.ExecutablePath);
+                        string tmpUpdaterPath = Path.Combine(appPath, "Updater.exe.tmp");
+                        string updaterPath = tmpUpdaterPath.Replace(".exe.tmp", ".exe");
+                        if (File.Exists(tmpUpdaterPath))
+                        {
+                            File.Delete(updaterPath);
+                            File.Move(tmpUpdaterPath, updaterPath);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine(ex);
+                    }
+                });
         }
 
         /// <summary>

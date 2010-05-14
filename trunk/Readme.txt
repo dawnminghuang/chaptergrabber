@@ -13,6 +13,9 @@ You must have .NET Framework 3.5 available from Windows Update.
 
 Whats New?
 --------------------
+2010-05-14 : v4.1
+Added automatic application updater that downloads and installs new updates
+
 2010-05-13 : v4.0
 Added update-checking and auto notification
 Added chapters file association
