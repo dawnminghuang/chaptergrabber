@@ -173,6 +173,7 @@ namespace JarrettVance.ChapterTools
         this.splitContainer1.Panel2.SuspendLayout();
         this.splitContainer1.SuspendLayout();
         this.grpResults.SuspendLayout();
+        this.statusStrip1.SuspendLayout();
         this.SuspendLayout();
         // 
         // mainMenu
@@ -355,9 +356,9 @@ namespace JarrettVance.ChapterTools
         // 
         // txtTitle
         // 
-        this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+        this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                    | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
         this.txtTitle.Location = new System.Drawing.Point(37, 7);
         this.txtTitle.Name = "txtTitle";
         this.txtTitle.Size = new System.Drawing.Size(258, 20);
@@ -377,9 +378,9 @@ namespace JarrettVance.ChapterTools
         // listChapters
         // 
         this.listChapters.Activation = System.Windows.Forms.ItemActivation.OneClick;
-        this.listChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+        this.listChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                    | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
         this.listChapters.FullRowSelect = true;
         this.listChapters.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
         this.listChapters.HideSelection = false;
@@ -395,8 +396,8 @@ namespace JarrettVance.ChapterTools
         // 
         // txtChapterName
         // 
-        this.txtChapterName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+        this.txtChapterName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
         this.txtChapterName.Location = new System.Drawing.Point(48, 222);
         this.txtChapterName.MaxLength = 300;
         this.txtChapterName.Name = "txtChapterName";
@@ -417,8 +418,8 @@ namespace JarrettVance.ChapterTools
         // 
         // txtChapterTime
         // 
-        this.txtChapterTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+        this.txtChapterTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
         this.txtChapterTime.Location = new System.Drawing.Point(48, 198);
         this.txtChapterTime.MaxLength = 12;
         this.txtChapterTime.Name = "txtChapterTime";
@@ -439,9 +440,9 @@ namespace JarrettVance.ChapterTools
         // 
         // grpChapters
         // 
-        this.grpChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+        this.grpChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                    | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
         this.grpChapters.Controls.Add(this.listChapters);
         this.grpChapters.Controls.Add(this.btnDn);
         this.grpChapters.Controls.Add(this.btnUp);
@@ -500,9 +501,9 @@ namespace JarrettVance.ChapterTools
         // 
         // splitContainer1
         // 
-        this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+        this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                    | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
         this.splitContainer1.Location = new System.Drawing.Point(3, 2);
         this.splitContainer1.Name = "splitContainer1";
         // 
@@ -522,9 +523,9 @@ namespace JarrettVance.ChapterTools
         // 
         // grpResults
         // 
-        this.grpResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+        this.grpResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                    | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
         this.grpResults.Controls.Add(this.lstResults);
         this.grpResults.Location = new System.Drawing.Point(3, 32);
         this.grpResults.Name = "grpResults";
@@ -535,9 +536,9 @@ namespace JarrettVance.ChapterTools
         // 
         // lstResults
         // 
-        this.lstResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+        this.lstResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                    | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
         this.lstResults.FormattingEnabled = true;
         this.lstResults.Location = new System.Drawing.Point(6, 16);
         this.lstResults.Name = "lstResults";
@@ -563,7 +564,7 @@ namespace JarrettVance.ChapterTools
         // 
         this.tsslStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
         this.tsslStatus.Name = "tsslStatus";
-        this.tsslStatus.Size = new System.Drawing.Size(189, 17);
+        this.tsslStatus.Size = new System.Drawing.Size(158, 17);
         this.tsslStatus.Spring = true;
         this.tsslStatus.Text = "Ready";
         this.tsslStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -577,6 +578,11 @@ namespace JarrettVance.ChapterTools
         // 
         // statusStrip1
         // 
+        this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslStatus,
+            this.tsslDuration,
+            this.tsslFps,
+            this.tsslLang});
         this.statusStrip1.Location = new System.Drawing.Point(0, 289);
         this.statusStrip1.Name = "statusStrip1";
         this.statusStrip1.Size = new System.Drawing.Size(484, 22);
@@ -630,6 +636,8 @@ namespace JarrettVance.ChapterTools
         this.splitContainer1.Panel2.PerformLayout();
         this.splitContainer1.ResumeLayout(false);
         this.grpResults.ResumeLayout(false);
+        this.statusStrip1.ResumeLayout(false);
+        this.statusStrip1.PerformLayout();
         this.ResumeLayout(false);
         this.PerformLayout();
 
