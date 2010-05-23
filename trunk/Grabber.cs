@@ -88,61 +88,61 @@ namespace JarrettVance.ChapterTools
         chapters[i] = new Chapter() { Time = chapters[i].Time, Name = ExtractFromCopy(clipboard, i + 1, includeDuration) };
 		}
 
-		public static bool ImportFromWeb(List<Chapter> chapters, string title, string ean, bool includeDuration)
-		{
-      throw new NotImplementedException();
-			//first download page
-			string html = "";
-			WebResponse result = null;
-			try 
-			{
-				string URL = "http://video.barnesandnoble.com/search/product.asp?EAN="+ean+"&VIEW=SCN";
-				WebRequest req = WebRequest.Create(URL);
-				result = req.GetResponse();
-				Stream ReceiveStream = result.GetResponseStream();
-				Encoding encode = System.Text.Encoding.GetEncoding("utf-8");
-				StreamReader sr = new StreamReader( ReceiveStream, encode );
+      //  public static bool ImportFromWeb(List<Chapter> chapters, string title, string ean, bool includeDuration)
+      //  {
+      //throw new NotImplementedException();
+      //      //first download page
+      //      string html = "";
+      //      WebResponse result = null;
+      //      try 
+      //      {
+      //          string URL = "http://video.barnesandnoble.com/search/product.asp?EAN="+ean+"&VIEW=SCN";
+      //          WebRequest req = WebRequest.Create(URL);
+      //          result = req.GetResponse();
+      //          Stream ReceiveStream = result.GetResponseStream();
+      //          Encoding encode = System.Text.Encoding.GetEncoding("utf-8");
+      //          StreamReader sr = new StreamReader( ReceiveStream, encode );
 
-				Char[] read = new Char[256];
-				int count = sr.Read( read, 0, 256 );
+      //          Char[] read = new Char[256];
+      //          int count = sr.Read( read, 0, 256 );
 
-				while (count > 0) 
-				{
-					String str = new String(read, 0, count);
-					html = html + str;
-					count = sr.Read(read, 0, 256);
-				}
-			} 
-			catch(Exception) 
-			{
-			} 
-			finally 
-			{
-				if ( result != null ) 
-				{
-					result.Close();
-				}
-			}
-			//try and get movie title
-			string strTitle = "";
+      //          while (count > 0) 
+      //          {
+      //              String str = new String(read, 0, count);
+      //              html = html + str;
+      //              count = sr.Read(read, 0, 256);
+      //          }
+      //      } 
+      //      catch(Exception) 
+      //      {
+      //      } 
+      //      finally 
+      //      {
+      //          if ( result != null ) 
+      //          {
+      //              result.Close();
+      //          }
+      //      }
+      //      //try and get movie title
+      //      string strTitle = "";
 
-			int intB, intL;
-			string strFind = "<title>Barnes&nbsp;&amp;&nbsp;Noble.com - ";
+      //      int intB, intL;
+      //      string strFind = "<title>Barnes&nbsp;&amp;&nbsp;Noble.com - ";
 
-			intB = html.IndexOf(strFind) + strFind.Length;
-			intL = html.IndexOf("</title>") - intB;
+      //      intB = html.IndexOf(strFind) + strFind.Length;
+      //      intL = html.IndexOf("</title>") - intB;
 
-			try
-			{
-				title = html.Substring(intB, intL);
-			}
-			catch (Exception) {
-			}
+      //      try
+      //      {
+      //          title = html.Substring(intB, intL);
+      //      }
+      //      catch (Exception) {
+      //      }
 
-			for(int i=0; i<chapters.Count; i++)
-				//chapters[i].Name = ExtractFromHtml(html, i+1, includeDuration);
-			return true;
-		}
+      //      for(int i=0; i<chapters.Count; i++)
+      //          //chapters[i].Name = ExtractFromHtml(html, i+1, includeDuration);
+      //      return true;
+      //  }
 
 	
 

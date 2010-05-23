@@ -380,45 +380,42 @@ namespace JarrettVance.ChapterTools
       }
     }
 
+    public static List<ChapterInfo> ReadPgcListFromFile(string file)
+    {
+        ChapterExtractor ex = null;
+        string fileLower = file.ToLower();
+        if (fileLower.EndsWith("txt"))
+            ex = new TextExtractor();
+        else if (fileLower.EndsWith("xpl"))
+            ex = new XplExtractor();
+        else if (fileLower.EndsWith("ifo"))
+            ex = new Ifo2Extractor();
+        else if (fileLower.EndsWith("mpls"))
+            ex = new MplsExtractor();
+        else if (fileLower.EndsWith("xml"))
+            throw new Exception("Format not yet supported.");
+        else if (fileLower.EndsWith("chapters"))
+        {
+            List<ChapterInfo> ret = new List<ChapterInfo>();
+            ret.Add(ChapterInfo.Load(file));
+            return ret;
+        }
+        else
+        {
+            throw new Exception("The selected file is not a recognized format.");
+        }
+
+        return ex.GetStreams(file);
+    }
+
     public void OpenFile(string file)
     {
       Cursor = Cursors.WaitCursor;
       tsslStatus.Text = "Parsing chapters from file...";
       try
       {
-        if (file.ToLower().EndsWith("txt"))
-        {
-          ChapterExtractor ex = new TextExtractor();
-          pgc = ex.GetStreams(file)[0];
-        }
-        else if (file.ToLower().EndsWith("xpl"))
-        {
-          ChapterExtractor ex = new XplExtractor();
-          pgc = ex.GetStreams(file)[0];
-          //TODO: support multiple streams?
-        }
-        else if (file.ToLower().EndsWith("ifo"))
-        {
-          ChapterExtractor ex = new Ifo2Extractor();
-          pgc = ex.GetStreams(file)[0];
-        }
-        else if (file.ToLower().EndsWith("mpls"))
-        {
-          ChapterExtractor ex = new MplsExtractor();
-          pgc = ex.GetStreams(file)[0];
-        }
-        else if (file.ToLower().EndsWith("xml"))
-        {
-          throw new Exception("Format not yet supported.");
-        }
-        else if (file.ToLower().EndsWith("chapters"))
-        {
-          pgc = ChapterInfo.Load(file);
-        }
-        else
-        {
-          throw new Exception("The selected file is not a recognized format.");
-        }
+        List<ChapterInfo> temp = ReadPgcListFromFile(file);
+        pgc = temp[0];
         if (pgc.FramesPerSecond == 0) pgc.FramesPerSecond = Settings.Default.DefaultFps;
         if (pgc.LangCode == null) pgc.LangCode = Settings.Default.DefaultLangCode;
         FreshChapterView();
