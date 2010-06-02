@@ -44,7 +44,7 @@ namespace JarrettVance.ChapterTools.Grabbers
     }
 
 
-    static void ImportFromSearchXml(List<Chapter> chapters, XDocument xml, int id)
+    static void ImportFromSearchXml(List<ChapterEntry> chapters, XDocument xml, int id)
     {
       //if (chapters.Count == 0) throw new Exception("Cannot import names to an empty chapter list.");
 
@@ -63,12 +63,12 @@ namespace JarrettVance.ChapterTools.Grabbers
         {
           string name = names.Where(n => n.Number == i + 1).Select(n => n.Title).FirstOrDefault();
           if (!string.IsNullOrEmpty(name))
-            chapters[i] = new Chapter() { Name = name, Time = chapters[i].Time };
+            chapters[i] = new ChapterEntry() { Name = name, Time = chapters[i].Time };
         }
       }
       else
       {
-        chapters.AddRange(names.Select(n => new Chapter() { Name = n.Title }));
+        chapters.AddRange(names.Select(n => new ChapterEntry() { Name = n.Title }));
       }
     }
 
@@ -86,6 +86,11 @@ namespace JarrettVance.ChapterTools.Grabbers
         (character >= 0xE000 && character <= 0xFFFD) ||
         (character >= 0x10000 && character <= 0x10FFFF)
       );
+    }
+
+    public override ChapterInfo DirectHit(string hash)
+    {
+        throw new NotImplementedException();
     }
   }
 }

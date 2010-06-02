@@ -23,7 +23,7 @@ namespace JarrettVance.ChapterTools.Extractors
     public override List<ChapterInfo> GetStreams(string location)
     {
       ChapterInfo pgc = new ChapterInfo();
-      pgc.Chapters = new List<Chapter>();
+      pgc.Chapters = new List<ChapterEntry>();
       pgc.SourceHash = ChapterExtractor.ComputeMD5Sum(location);
       pgc.SourceName = location;
       pgc.Title = Path.GetFileNameWithoutExtension(location);
@@ -37,7 +37,7 @@ namespace JarrettVance.ChapterTools.Extractors
       mpls.Scan();
       foreach (double d in mpls.Chapters)
       {
-        pgc.Chapters.Add(new Chapter()
+        pgc.Chapters.Add(new ChapterEntry()
           {
             Name = string.Empty,
             Time = new TimeSpan((long)(d * (double)TimeSpan.TicksPerSecond))

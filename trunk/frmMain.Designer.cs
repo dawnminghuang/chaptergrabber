@@ -356,12 +356,12 @@ namespace JarrettVance.ChapterTools
         // 
         // txtTitle
         // 
-        this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                    | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
+        this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
         this.txtTitle.Location = new System.Drawing.Point(37, 7);
         this.txtTitle.Name = "txtTitle";
-        this.txtTitle.Size = new System.Drawing.Size(258, 20);
+        this.txtTitle.Size = new System.Drawing.Size(254, 20);
         this.txtTitle.TabIndex = 0;
         this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
         // 
@@ -378,9 +378,9 @@ namespace JarrettVance.ChapterTools
         // listChapters
         // 
         this.listChapters.Activation = System.Windows.Forms.ItemActivation.OneClick;
-        this.listChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                    | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
+        this.listChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
         this.listChapters.FullRowSelect = true;
         this.listChapters.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
         this.listChapters.HideSelection = false;
@@ -388,7 +388,7 @@ namespace JarrettVance.ChapterTools
         this.listChapters.Location = new System.Drawing.Point(6, 16);
         this.listChapters.MultiSelect = false;
         this.listChapters.Name = "listChapters";
-        this.listChapters.Size = new System.Drawing.Size(286, 173);
+        this.listChapters.Size = new System.Drawing.Size(282, 261);
         this.listChapters.TabIndex = 10;
         this.listChapters.UseCompatibleStateImageBehavior = false;
         this.listChapters.View = System.Windows.Forms.View.Details;
@@ -396,12 +396,12 @@ namespace JarrettVance.ChapterTools
         // 
         // txtChapterName
         // 
-        this.txtChapterName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
-        this.txtChapterName.Location = new System.Drawing.Point(48, 222);
+        this.txtChapterName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+        this.txtChapterName.Location = new System.Drawing.Point(48, 384);
         this.txtChapterName.MaxLength = 300;
         this.txtChapterName.Name = "txtChapterName";
-        this.txtChapterName.Size = new System.Drawing.Size(239, 20);
+        this.txtChapterName.Size = new System.Drawing.Size(235, 20);
         this.txtChapterName.TabIndex = 4;
         this.txtChapterName.Text = "Chapter 0";
         this.txtChapterName.TextChanged += new System.EventHandler(this.txtChapter_TextChanged);
@@ -409,7 +409,7 @@ namespace JarrettVance.ChapterTools
         // label6
         // 
         this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-        this.label6.Location = new System.Drawing.Point(8, 224);
+        this.label6.Location = new System.Drawing.Point(8, 386);
         this.label6.Name = "label6";
         this.label6.Size = new System.Drawing.Size(48, 16);
         this.label6.TabIndex = 3;
@@ -418,12 +418,12 @@ namespace JarrettVance.ChapterTools
         // 
         // txtChapterTime
         // 
-        this.txtChapterTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
-        this.txtChapterTime.Location = new System.Drawing.Point(48, 198);
+        this.txtChapterTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+        this.txtChapterTime.Location = new System.Drawing.Point(48, 360);
         this.txtChapterTime.MaxLength = 12;
         this.txtChapterTime.Name = "txtChapterTime";
-        this.txtChapterTime.Size = new System.Drawing.Size(116, 20);
+        this.txtChapterTime.Size = new System.Drawing.Size(112, 20);
         this.txtChapterTime.TabIndex = 2;
         this.txtChapterTime.Text = "00:00:00.000";
         this.txtChapterTime.TextChanged += new System.EventHandler(this.txtChapter_TextChanged);
@@ -431,7 +431,7 @@ namespace JarrettVance.ChapterTools
         // label3
         // 
         this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-        this.label3.Location = new System.Drawing.Point(8, 200);
+        this.label3.Location = new System.Drawing.Point(8, 362);
         this.label3.Name = "label3";
         this.label3.Size = new System.Drawing.Size(48, 16);
         this.label3.TabIndex = 1;
@@ -440,9 +440,9 @@ namespace JarrettVance.ChapterTools
         // 
         // grpChapters
         // 
-        this.grpChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                    | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
+        this.grpChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
         this.grpChapters.Controls.Add(this.listChapters);
         this.grpChapters.Controls.Add(this.btnDn);
         this.grpChapters.Controls.Add(this.btnUp);
@@ -454,7 +454,7 @@ namespace JarrettVance.ChapterTools
         this.grpChapters.Controls.Add(this.label3);
         this.grpChapters.Location = new System.Drawing.Point(3, 32);
         this.grpChapters.Name = "grpChapters";
-        this.grpChapters.Size = new System.Drawing.Size(298, 249);
+        this.grpChapters.Size = new System.Drawing.Size(294, 354);
         this.grpChapters.TabIndex = 7;
         this.grpChapters.TabStop = false;
         this.grpChapters.Text = "Chapters";
@@ -463,7 +463,7 @@ namespace JarrettVance.ChapterTools
         // 
         this.btnDn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
         this.btnDn.Image = ((System.Drawing.Image)(resources.GetObject("btnDn.Image")));
-        this.btnDn.Location = new System.Drawing.Point(206, 195);
+        this.btnDn.Location = new System.Drawing.Point(202, 357);
         this.btnDn.Name = "btnDn";
         this.btnDn.Size = new System.Drawing.Size(24, 24);
         this.btnDn.TabIndex = 9;
@@ -473,7 +473,7 @@ namespace JarrettVance.ChapterTools
         // 
         this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
         this.btnUp.Image = ((System.Drawing.Image)(resources.GetObject("btnUp.Image")));
-        this.btnUp.Location = new System.Drawing.Point(182, 195);
+        this.btnUp.Location = new System.Drawing.Point(178, 357);
         this.btnUp.Name = "btnUp";
         this.btnUp.Size = new System.Drawing.Size(24, 24);
         this.btnUp.TabIndex = 8;
@@ -483,7 +483,7 @@ namespace JarrettVance.ChapterTools
         // 
         this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
         this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-        this.btnDelete.Location = new System.Drawing.Point(262, 195);
+        this.btnDelete.Location = new System.Drawing.Point(258, 357);
         this.btnDelete.Name = "btnDelete";
         this.btnDelete.Size = new System.Drawing.Size(24, 24);
         this.btnDelete.TabIndex = 6;
@@ -493,7 +493,7 @@ namespace JarrettVance.ChapterTools
         // 
         this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
         this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-        this.btnAdd.Location = new System.Drawing.Point(238, 195);
+        this.btnAdd.Location = new System.Drawing.Point(234, 357);
         this.btnAdd.Name = "btnAdd";
         this.btnAdd.Size = new System.Drawing.Size(24, 24);
         this.btnAdd.TabIndex = 5;
@@ -501,9 +501,9 @@ namespace JarrettVance.ChapterTools
         // 
         // splitContainer1
         // 
-        this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                    | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
+        this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
         this.splitContainer1.Location = new System.Drawing.Point(3, 2);
         this.splitContainer1.Name = "splitContainer1";
         // 
@@ -517,32 +517,32 @@ namespace JarrettVance.ChapterTools
         // 
         this.splitContainer1.Panel2.Controls.Add(this.grpResults);
         this.splitContainer1.Panel2.Controls.Add(this.btnSearch);
-        this.splitContainer1.Size = new System.Drawing.Size(479, 284);
-        this.splitContainer1.SplitterDistance = 304;
+        this.splitContainer1.Size = new System.Drawing.Size(479, 386);
+        this.splitContainer1.SplitterDistance = 301;
         this.splitContainer1.TabIndex = 8;
         // 
         // grpResults
         // 
-        this.grpResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                    | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
+        this.grpResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
         this.grpResults.Controls.Add(this.lstResults);
         this.grpResults.Location = new System.Drawing.Point(3, 32);
         this.grpResults.Name = "grpResults";
-        this.grpResults.Size = new System.Drawing.Size(165, 249);
+        this.grpResults.Size = new System.Drawing.Size(163, 351);
         this.grpResults.TabIndex = 0;
         this.grpResults.TabStop = false;
         this.grpResults.Text = "Results";
         // 
         // lstResults
         // 
-        this.lstResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                    | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
+        this.lstResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
         this.lstResults.FormattingEnabled = true;
         this.lstResults.Location = new System.Drawing.Point(6, 16);
         this.lstResults.Name = "lstResults";
-        this.lstResults.Size = new System.Drawing.Size(152, 225);
+        this.lstResults.Size = new System.Drawing.Size(148, 329);
         this.lstResults.TabIndex = 0;
         this.lstResults.SelectedIndexChanged += new System.EventHandler(this.lstResults_SelectedIndexChanged);
         // 
@@ -552,7 +552,7 @@ namespace JarrettVance.ChapterTools
         this.btnSearch.AutoSize = true;
         this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
         this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        this.btnSearch.Location = new System.Drawing.Point(39, 4);
+        this.btnSearch.Location = new System.Drawing.Point(38, 4);
         this.btnSearch.Name = "btnSearch";
         this.btnSearch.Size = new System.Drawing.Size(92, 24);
         this.btnSearch.TabIndex = 9;
@@ -564,7 +564,7 @@ namespace JarrettVance.ChapterTools
         // 
         this.tsslStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
         this.tsslStatus.Name = "tsslStatus";
-        this.tsslStatus.Size = new System.Drawing.Size(158, 17);
+        this.tsslStatus.Size = new System.Drawing.Size(189, 17);
         this.tsslStatus.Spring = true;
         this.tsslStatus.Text = "Ready";
         this.tsslStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -583,7 +583,7 @@ namespace JarrettVance.ChapterTools
             this.tsslDuration,
             this.tsslFps,
             this.tsslLang});
-        this.statusStrip1.Location = new System.Drawing.Point(0, 289);
+        this.statusStrip1.Location = new System.Drawing.Point(0, 391);
         this.statusStrip1.Name = "statusStrip1";
         this.statusStrip1.Size = new System.Drawing.Size(484, 22);
         this.statusStrip1.TabIndex = 11;
@@ -618,7 +618,7 @@ namespace JarrettVance.ChapterTools
         // frmMain
         // 
         this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-        this.ClientSize = new System.Drawing.Size(484, 311);
+        this.ClientSize = new System.Drawing.Size(484, 413);
         this.Controls.Add(this.statusStrip1);
         this.Controls.Add(this.btnLookup);
         this.Controls.Add(this.splitContainer1);

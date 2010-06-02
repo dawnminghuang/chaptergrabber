@@ -82,10 +82,10 @@ namespace JarrettVance.ChapterTools
     //  return list;
     //}
 
-		public static void ImportFromClipboard(List<Chapter> chapters, string clipboard, bool includeDuration)
+		public static void ImportFromClipboard(List<ChapterEntry> chapters, string clipboard, bool includeDuration)
 		{
       for (int i = 0; i < chapters.Count; i++)
-        chapters[i] = new Chapter() { Time = chapters[i].Time, Name = ExtractFromCopy(clipboard, i + 1, includeDuration) };
+        chapters[i] = new ChapterEntry() { Time = chapters[i].Time, Name = ExtractFromCopy(clipboard, i + 1, includeDuration) };
 		}
 
       //  public static bool ImportFromWeb(List<Chapter> chapters, string title, string ean, bool includeDuration)

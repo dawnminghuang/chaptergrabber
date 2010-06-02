@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Xml.Linq;
+using System.Reflection;
+using System.Xml;
 using System.Windows.Forms;
 
 namespace JarrettVance.ChapterTools
@@ -11,13 +13,19 @@ namespace JarrettVance.ChapterTools
   public class ChapterInfo
   {
     public string Title { get; set; }
+    public int? ChapterSetId { get; set; }
+    public String ImdbId { get; set; }
+    public int? MovieDbId { get; set; }
+    public string Extractor { get; set; }
     public string LangCode { get; set; }
     public string SourceName { get; set; }
     public string SourceType { get; set; }
     public string SourceHash { get; set; }
     public double FramesPerSecond { get; set; }
     public TimeSpan Duration { get; set; }
-    public List<Chapter> Chapters { get; set; }
+    public List<ChapterEntry> Chapters { get; set; }
+
+    public ChapterInfo() { }
 
     public override string ToString()
     {
@@ -28,9 +36,9 @@ namespace JarrettVance.ChapterTools
     {
       for (int i = 0; i < Chapters.Count; i++)
       {
-        Chapter c = Chapters[i];
+        ChapterEntry c = Chapters[i];
         double frames = c.Time.TotalSeconds * FramesPerSecond;
-        Chapters[i] = new Chapter() { Name = c.Name, Time = new TimeSpan((long)Math.Round(frames / fps * TimeSpan.TicksPerSecond)) };
+        Chapters[i] = new ChapterEntry() { Name = c.Name, Time = new TimeSpan((long)Math.Round(frames / fps * TimeSpan.TicksPerSecond)) };
       }
 
       double totalFrames = Duration.TotalSeconds * FramesPerSecond;
@@ -42,7 +50,7 @@ namespace JarrettVance.ChapterTools
     {
       List<string> lines = new List<string>();
       int i = 0;
-      foreach (Chapter c in Chapters)
+      foreach (ChapterEntry c in Chapters)
       {
         i++;
         lines.Add("CHAPTER" + i.ToString("00") + "=" + c.Time.ToShortString());
@@ -54,7 +62,7 @@ namespace JarrettVance.ChapterTools
     public void SaveQpfile(string filename)
     {
       List<string> lines = new List<string>();
-      foreach (Chapter c in Chapters)
+      foreach (ChapterEntry c in Chapters)
       {
         lines.Add(string.Format("{0} I -1", (long)Math.Round(c.Time.TotalSeconds * FramesPerSecond)));
       }
@@ -64,7 +72,7 @@ namespace JarrettVance.ChapterTools
     public void SaveCelltimes(string filename)
     {
       List<string> lines = new List<string>();
-      foreach (Chapter c in Chapters)
+      foreach (ChapterEntry c in Chapters)
       {
         lines.Add(((long)Math.Round(c.Time.TotalSeconds * FramesPerSecond)).ToString());
       }
@@ -74,7 +82,7 @@ namespace JarrettVance.ChapterTools
     public void SaveTsmuxerMeta(string filename)
     {
       string text = "--custom-" + Environment.NewLine + "chapters=";
-      foreach (Chapter c in Chapters)
+      foreach (ChapterEntry c in Chapters)
       {
         text += c.Time.ToShortString() + ";";
       }
@@ -85,53 +93,96 @@ namespace JarrettVance.ChapterTools
     public void SaveTimecodes(string filename)
     {
       List<string> lines = new List<string>();
-      foreach (Chapter c in Chapters)
+      foreach (ChapterEntry c in Chapters)
       {
         lines.Add(c.Time.ToShortString());
       }
       File.WriteAllLines(filename, lines.ToArray());
     }
 
-    static readonly XNamespace cgNs = "http://jvance.com/2008/ChapterGrabber";
+    public static readonly XNamespace CgNs = "http://jvance.com/2008/ChapterGrabber";
+
+    public static ChapterInfo Load(XmlReader r)
+    {
+      XDocument doc = XDocument.Load(r);
+      return ChapterInfo.Load(doc.Root);
+    }
 
     public static ChapterInfo Load(string filename)
     {
-      ChapterInfo ci = new ChapterInfo();
       XDocument doc = XDocument.Load(filename);
-      if (doc.Element(cgNs + "chapterInfo").Element(cgNs + "title") != null)
-        ci.Title = (string)doc.Element(cgNs + "chapterInfo").Element(cgNs + "title");
-      XElement src = doc.Element(cgNs + "chapterInfo").Element(cgNs + "source");
+      return ChapterInfo.Load(doc.Root);
+    }
 
-      ci.SourceName = (string)src.Element("name");
-      if (src.Element(cgNs + "type") != null)
-        ci.SourceType = (string)src.Element(cgNs + "type");
-      ci.SourceHash = (string)src.Element(cgNs + "hash");
-      ci.FramesPerSecond = Convert.ToDouble(src.Element(cgNs + "fps").Value, new System.Globalization.NumberFormatInfo());
-      ci.Duration = TimeSpan.Parse(src.Element(cgNs + "duration").Value);
-      ci.Chapters = doc.Element(cgNs + "chapterInfo").Element(cgNs + "chapters").Elements(cgNs + "chapter")
-        .Select(e => new Chapter() { Name = (string)e.Attribute("name"), Time = TimeSpan.Parse((string)e.Attribute("time")) }).ToList();
+    public static ChapterInfo Load(XElement root)
+    {
+      ChapterInfo ci = new ChapterInfo();
+      ci.LangCode = (string)root.Attribute(XNamespace.Xml + "lang");
+      ci.Extractor = (string)root.Attribute("extractor");
+
+      if (root.Element(CgNs + "title") != null)
+          ci.Title = (string)root.Element(CgNs + "title");
+
+      XElement @ref = root.Element(CgNs + "ref");
+      if (@ref != null)
+      {
+          ci.ChapterSetId = (int?)@ref.Element(CgNs + "chapterSetId");
+          ci.ImdbId = (string)@ref.Element(CgNs + "imdbId");
+          ci.MovieDbId = (int?)@ref.Element(CgNs + "movieDbId");
+      }
+
+      XElement src = root.Element(CgNs + "source");
+      if (src != null)
+      {
+          ci.SourceName = (string)src.Element(CgNs + "name");
+          if (src.Element(CgNs + "type") != null)
+              ci.SourceType = (string)src.Element(CgNs + "type");
+          ci.SourceHash = (string)src.Element(CgNs + "hash");
+          ci.FramesPerSecond = Convert.ToDouble(src.Element(CgNs + "fps").Value, new System.Globalization.NumberFormatInfo());
+          ci.Duration = TimeSpan.Parse(src.Element(CgNs + "duration").Value);
+      }
+
+      ci.Chapters = root.Element(CgNs + "chapters").Elements(CgNs + "chapter")
+        .Select(e => new ChapterEntry() { Name = (string)e.Attribute("name"), Time = TimeSpan.Parse((string)e.Attribute("time")) }).ToList();
       return ci;
     }
 
     public void Save(string filename)
     {
-      new XDocument(new XElement(cgNs + "chapterInfo",
+      ToXDocument().Save(filename);
+    }
+
+    public void Save(XmlWriter x)
+    {
+      ToXDocument().Save(x);
+    }
+
+    public XDocument ToXDocument()
+    {
+      var reference = new XElement(CgNs + "ref");
+      if (ChapterSetId.HasValue) reference.Add(new XElement(CgNs + "chapterSetId", ChapterSetId));
+      if (MovieDbId.HasValue) reference.Add(new XElement(CgNs + "movieDbId", MovieDbId));
+      if (ImdbId != null) reference.Add(new XElement(CgNs + "imdbId", ImdbId));
+
+      return new XDocument(new XElement(CgNs + "chapterInfo",
         new XAttribute(XNamespace.Xml + "lang", LangCode),
-        new XAttribute("version", "1"),
-        new XComment("This file was generated by ChapterGrabber " + Application.ProductVersion),
+        new XAttribute("version", "2"),
+        new XAttribute("extractor", "ChapterGrabber " + Application.ProductVersion),
         new XComment("For more information visit http://jvance.com/pages/ChapterGrabber.xhtml"),
-        Title != null ? new XElement(cgNs + "title", Title) : null,
-        new XElement(cgNs + "source",
-          new XElement(cgNs + "name", SourceName),
-          SourceType != null ? new XElement(cgNs + "type", SourceType) : null,
-          new XElement(cgNs + "hash", SourceHash),
-          new XElement(cgNs + "fps", FramesPerSecond),
-          new XElement(cgNs + "duration", Duration.ToString())),
-        new XElement(cgNs + "chapters",
+        Extractor != null ? new XAttribute("extractor", Extractor) : null,
+        Title != null ? new XElement(CgNs + "title", Title) : null,
+        reference.Elements().Count() > 0 ? reference : null,
+        new XElement(CgNs + "source",
+          new XElement(CgNs + "name", SourceName),
+          SourceType != null ? new XElement(CgNs + "type", SourceType) : null,
+          new XElement(CgNs + "hash", SourceHash),
+          new XElement(CgNs + "fps", FramesPerSecond),
+          new XElement(CgNs + "duration", Duration.ToString())),
+        new XElement(CgNs + "chapters",
           Chapters.Select(c =>
-            new XElement(cgNs + "chapter",
+            new XElement(CgNs + "chapter",
               new XAttribute("time", c.Time.ToString()),
-              new XAttribute("name", c.Name)))))).Save(filename);
+              new XAttribute("name", c.Name))))));
     }
 
     public void SaveXml(string filename)

@@ -9,6 +9,8 @@ namespace JarrettVance.ChapterTools
   {
     public abstract void PopulateNames(SearchResult result, ChapterInfo chapterInfo, bool includeDurations);
     public abstract List<SearchResult> Search(ChapterInfo chapterInfo);
+    public abstract ChapterInfo DirectHit(string hash);
+    public bool SupportsHash { get; set; }
 
     public event EventHandler SearchComplete;
 

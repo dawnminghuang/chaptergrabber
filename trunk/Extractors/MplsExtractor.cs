@@ -22,7 +22,7 @@ namespace JarrettVance.ChapterTools.Extractors
     public override List<ChapterInfo> GetStreams(string location)
     {
       ChapterInfo pgc = new ChapterInfo();
-      List<Chapter> chapters = new List<Chapter>();
+      List<ChapterEntry> chapters = new List<ChapterEntry>();
       pgc.SourceName = location;
       pgc.SourceHash = ChapterExtractor.ComputeMD5Sum(location);
       pgc.SourceType = "Blu-Ray";
@@ -82,7 +82,7 @@ namespace JarrettVance.ChapterTools.Extractors
 
           double chapterSeconds = (double)chapterTime / 45000D;
           double relativeSeconds = chapterSeconds - streamClip.TimeIn + streamClip.RelativeTimeIn;
-          chapters.Add(new Chapter()
+          chapters.Add(new ChapterEntry()
           {
             Name = string.Empty,
             Time = new TimeSpan((long)(relativeSeconds * (double)TimeSpan.TicksPerSecond))

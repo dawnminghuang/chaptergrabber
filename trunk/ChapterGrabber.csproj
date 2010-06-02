@@ -144,6 +144,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Grabbers\ChapterDbGrabber.cs" />
+    <Compile Include="Updater.cs" />
     <Content Include="Icon.ico" />
     <Content Include="Readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -166,7 +168,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Chapter.cs">
+    <Compile Include="ChapterEntry.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Extractors\BlurayExtractor.cs" />
@@ -188,11 +190,11 @@
     <Compile Include="frmStreamSelect.Designer.cs">
       <DependentUpon>frmStreamSelect.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUpdate.cs">
+    <Compile Include="UpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUpdate.Designer.cs">
-      <DependentUpon>frmUpdate.cs</DependentUpon>
+    <Compile Include="UpdateForm.Designer.cs">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Grabber.cs">
       <SubType>Code</SubType>
@@ -240,8 +242,8 @@
     <EmbeddedResource Include="frmStreamSelect.resx">
       <DependentUpon>frmStreamSelect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUpdate.resx">
-      <DependentUpon>frmUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="UpdateForm.resx">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
