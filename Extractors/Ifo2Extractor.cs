@@ -50,9 +50,9 @@ namespace JarrettVance.ChapterTools.Extractors
       return Enumerable.Repeat(pgc, 1).ToList();
     }
 
-    List<Chapter> GetChapters(string ifoFile, int programChain, out TimeSpan duration, out double fps)
+    List<ChapterEntry> GetChapters(string ifoFile, int programChain, out TimeSpan duration, out double fps)
     {
-      List<Chapter> chapters = new List<Chapter>();
+      List<ChapterEntry> chapters = new List<ChapterEntry>();
       duration = TimeSpan.Zero;
       fps = 0;
       
@@ -88,7 +88,7 @@ namespace JarrettVance.ChapterTools.Extractors
       if (programChain < 0)
         return null;
 
-      chapters.Add(new Chapter() { Name = "Chapter 1" });
+      chapters.Add(new ChapterEntry() { Name = "Chapter 1" });
 
       uint longestChainOffset = IfoUtil.GetChainOffset(ifoFile, pcgITPosition, programChain);
       int programMapOffset = IfoUtil.ToInt16(IfoUtil.GetFileBlock(ifoFile, (pcgITPosition + longestChainOffset) + 230, 2));
@@ -119,7 +119,7 @@ namespace JarrettVance.ChapterTools.Extractors
 
         duration += totalTime;
         if (currentProgram + 1 < programChainPrograms)
-          chapters.Add(new Chapter() { Name = string.Format("Chapter {0}", currentProgram + 2), Time = duration });        
+          chapters.Add(new ChapterEntry() { Name = string.Format("Chapter {0}", currentProgram + 2), Time = duration });        
       }
       return chapters;
     }

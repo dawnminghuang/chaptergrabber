@@ -26,7 +26,7 @@ namespace JarrettVance.ChapterTools
 	/// <summary>
 	/// Summary description for Chapter.
 	/// </summary>
-	public struct Chapter
+	public struct ChapterEntry
 	{
     public TimeSpan Time { get; set; }
     public string Name { get; set; }

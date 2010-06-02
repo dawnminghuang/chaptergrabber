@@ -22,7 +22,7 @@ namespace JarrettVance.ChapterTools.Extractors
     {
       List<ChapterInfo> pgcs = new List<ChapterInfo>();
 
-      List<Chapter> list = new List<Chapter>();
+      List<ChapterEntry> list = new List<ChapterEntry>();
 
       int num = 0;
       TimeSpan ts = new TimeSpan(0);
@@ -44,7 +44,7 @@ namespace JarrettVance.ChapterTools.Extractors
           //read name
           name = line.Replace("CHAPTER" + num.ToString("00") + "NAME=", "");
           //add it to list
-          list.Add(new Chapter() { Name = name, Time = ts });
+          list.Add(new ChapterEntry() { Name = name, Time = ts });
         }
         onTime = !onTime;
       }

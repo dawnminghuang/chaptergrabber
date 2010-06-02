@@ -26,7 +26,7 @@ namespace JarrettVance.ChapterTools.Extractors
         foreach (XElement title in ts.Elements(ns + "Title").Where(t => t.Element(ns + "ChapterList") != null))
         {
           ChapterInfo pgc = new ChapterInfo();
-          List<Chapter> chapters = new List<Chapter>();
+          List<ChapterEntry> chapters = new List<ChapterEntry>();
           pgc.SourceName = location;
           pgc.SourceHash = ChapterExtractor.ComputeMD5Sum(location);
           pgc.SourceType = "HD-DVD";
@@ -41,7 +41,7 @@ namespace JarrettVance.ChapterTools.Extractors
           pgc.Title = titleName;
           foreach (XElement chapter in title.Element(ns + "ChapterList").Elements(ns + "Chapter"))
           {
-            chapters.Add(new Chapter()
+            chapters.Add(new ChapterEntry()
             {
               Name = (string)chapter.Attribute("displayName"),
               Time = GetTimeSpan((string)chapter.Attribute("titleTimeBegin"), timeBase, tickBase, tickBaseDivisor)

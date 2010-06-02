@@ -39,6 +39,7 @@ using BDInfo;
 using JarrettVance.ChapterTools.Grabbers;
 using NDepend.Helpers.FileDirectoryPath;
 using System.Globalization;
+using System.Reflection;
 namespace JarrettVance.ChapterTools
 {
   /// <summary>
@@ -46,7 +47,7 @@ namespace JarrettVance.ChapterTools
   /// </summary>
   public partial class frmMain : System.Windows.Forms.Form
   {
-      public string StartupFile { get; set; }
+    public string StartupFile { get; set; }
 
     private ChapterGrabber grabber = null;
     private ChapterInfo pgc;
@@ -54,7 +55,8 @@ namespace JarrettVance.ChapterTools
 
     private void frmMain_Load(object sender, System.EventArgs e)
     {
-        if (Settings.Default.AutoCheckForUpdate) new System.Threading.Thread(() => CheckForUpdate()).Start();
+      if (Settings.Default.AutoCheckForUpdate)
+        ThreadPool.QueueUserWorkItem((w) => Updater.CheckForUpdate(ShowUpdateDialog));
 
       this.Height = Math.Min(560, Screen.GetWorkingArea(this).Height - 30);
       this.listChapters.Columns.Add("Time", 80, HorizontalAlignment.Left);
@@ -67,7 +69,7 @@ namespace JarrettVance.ChapterTools
         var nfi = new NumberFormatInfo();
         object lastConfigVersion = Settings.Default.GetPreviousVersion("ConfigVersion");
         if (lastConfigVersion != null && Convert.ToDouble(lastConfigVersion.ToString(), nfi) <
-          Convert.ToDouble(Settings.Default.ConfigVersion,nfi))
+          Convert.ToDouble(Settings.Default.ConfigVersion, nfi))
         {
           Trace.WriteLine("Upgrading settings from previous version.");
           Settings.Default.Upgrade();
@@ -83,18 +85,18 @@ namespace JarrettVance.ChapterTools
 
       miIgnoreShortLastChapter.Checked = Settings.Default.IgnoreShortLastChapter;
       miImportDurations.Checked = Settings.Default.ImportDurations;
-        miAutoCheck.Checked = Settings.Default.AutoCheckForUpdate;
+      miAutoCheck.Checked = Settings.Default.AutoCheckForUpdate;
 
       ContextMenu m = new ContextMenu();
       m.MenuItems.Add(new MenuItem("TagChimp",
-        (s, args) => {grabber = new TagChimpGrabber(); Search();}));
+        (s, args) => { grabber = new TagChimpGrabber(); Search(); }));
       //m.MenuItems.Add(new MenuItem("MetaService",
       //  (s, args) => {grabber = new MetaServiceGrabber(); Search();}));
       btnSearch.ContextMenu = m;
 
       LoadFpsMenus();
       LoadLangMenu();
-      
+
       IList<MenuItem> menu = new List<MenuItem>();
       foreach (MenuItem mi in menuCurrentFps.MenuItems)
       {
@@ -102,74 +104,47 @@ namespace JarrettVance.ChapterTools
       }
       tsslFps.DropDownItems.AddRange(
         menu.Select(mi => new ToolStripMenuItem(mi.Text, null, (s, args) => CurrentFps((double)((ToolStripMenuItem)s).Tag)) { Tag = mi.Tag }).ToArray());
-      
+
       menu = new List<MenuItem>();
       foreach (MenuItem mi in menuLang.MenuItems)
       {
         menu.Add(mi);
       }
       tsslLang.DropDownItems.AddRange(
-        menu.Where(mi => mi.Text != "-").Select(mi => new ToolStripMenuItem(mi.Text, null, 
+        menu.Where(mi => mi.Text != "-").Select(mi => new ToolStripMenuItem(mi.Text, null,
           (s, args) => ChangeLang(((ToolStripMenuItem)s).Tag as string)) { Tag = mi.Tag }).ToArray());
       RefreshRecent();
       OnNew();
 
-        if (!string.IsNullOrEmpty(StartupFile)) OpenFile(StartupFile);
+      if (!string.IsNullOrEmpty(StartupFile)) OpenFile(StartupFile);
     }
 
-    private int CheckForUpdate()
+    void ShowUpdateDialog(Version appVersion, Version newVersion, XDocument doc)
     {
-        try
-        {
-            System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
-            Version appVersion = a.GetName().Version;
+      if (InvokeRequired)
+      {
+        Invoke(new Action<Version, Version, XDocument>(ShowUpdateDialog), appVersion, newVersion, doc);
+        return;
+      }
 
-            //download manifest
-            XDocument doc = XDocument.Load(Settings.Default.RemoteManifest);
-            //if newer, display dialog
-            Version newestVersion = new Version((string)doc.Root.Element("version"));
-            if (newestVersion > appVersion)
-            {
-                ShowUpdateDialog(appVersion, newestVersion, doc);
-                return 2; //update available
-            }
-            return 1; //no update available
-        }
-        catch (Exception ex)
+      using (UpdateForm f = new UpdateForm())
+      {
+        f.Text = string.Format(f.Text, appVersion);
+        f.MoreInfoLink = (string)doc.Root.Element("info");
+        f.Info = string.Format(f.Info, newVersion, (DateTime)doc.Root.Element("date"));
+        if (f.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
         {
-            Trace.WriteLine(ex);
+          Updater.LaunchUpdater(doc);
+          this.Close();
         }
-        return 0; //failed
-    }
-
-    void ShowUpdateDialog(Version appVersion, Version newestVersion, XDocument doc)
-    {
-        if (InvokeRequired)
-        {
-            Invoke(new Action<Version, Version, XDocument>(ShowUpdateDialog), appVersion, newestVersion, doc);
-            return;
-        }
-
-        using (frmUpdate f = new frmUpdate())
-        {
-            f.Text = string.Format(f.Text, appVersion);
-            f.MoreInfoLink = (string)doc.Root.Element("info");
-            f.Info = string.Format(f.Info, newestVersion, (DateTime)doc.Root.Element("date"));
-            f.Manifest = doc;
-            if (f.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                // Navigate to a URL.
-                System.Diagnostics.Process.Start("Updater.exe", "\"" + f.ManifestFile + "\" \"" + Application.ExecutablePath + "\"");
-                this.Close();
-            }
-        }
+      }
     }
 
     void LoadFpsMenus()
     {
       menuChangeFps.MenuItems.Clear();
       var nfi = new NumberFormatInfo();
-       
+
       foreach (string val in Settings.Default.FpsValues)
       {
 
@@ -182,7 +157,7 @@ namespace JarrettVance.ChapterTools
       foreach (string val in Settings.Default.FpsValues)
       {
         double fps = val.Contains('/') ? Convert.ToDouble(val.Split('/')[0], nfi) /
-          Convert.ToDouble(val.Split('/')[1], nfi) : Convert.ToDouble(val,nfi);
+          Convert.ToDouble(val.Split('/')[1], nfi) : Convert.ToDouble(val, nfi);
         menuCurrentFps.MenuItems.Add(new MenuItem(fps.ToString("0.000"),
           (s, args) => CurrentFps((double)((MenuItem)s).Tag)) { Tag = fps, RadioCheck = true });
       }
@@ -203,7 +178,7 @@ namespace JarrettVance.ChapterTools
             Checked = lang.Key == (pgc == null ? Settings.Default.DefaultLangCode : pgc.LangCode)
           });
       }
-        menuLang.MenuItems.Add(menuLang.MenuItems.Count - 1, new MenuItem("-"));
+      menuLang.MenuItems.Add(menuLang.MenuItems.Count - 1, new MenuItem("-"));
     }
 
     void ChangeLang(string langCode)
@@ -228,7 +203,7 @@ namespace JarrettVance.ChapterTools
 
     private void menuFileSave_Click(object sender, System.EventArgs e)
     {
-        saveFileDialog.Filter = 
+      saveFileDialog.Filter = 
         "Chapters File (*.chapters)|*.chapters|" + 
         "Chapters Text File (*.txt)|*.txt|" + 
         "Matroska Chapter XML File (*.xml)|*.xml|" + 
@@ -237,15 +212,15 @@ namespace JarrettVance.ChapterTools
         "x264 QP File (*.txt)|*.txt|" +
         "Timecodes Text File (*.txt)|*.txt|" +
         "All Files (*.*)|*.*";
-      
+
       saveFileDialog.RestoreDirectory = true;
       saveFileDialog.FileName = (pgc.Title == null ? pgc.SourceName : pgc.Title)
         + Settings.Default.LastSaveExt;
-      
-        //Note: filter index is one based (dumb)
+
+      //Note: filter index is one based (dumb)
       switch (Settings.Default.LastSaveExt)
       {
-          case ".chapters": saveFileDialog.FilterIndex = 1; break;
+        case ".chapters": saveFileDialog.FilterIndex = 1; break;
         case ".txt": saveFileDialog.FilterIndex = 2; break;
         case ".xml": saveFileDialog.FilterIndex = 3; break;
         default: saveFileDialog.FilterIndex = 8; break;
@@ -294,7 +269,7 @@ namespace JarrettVance.ChapterTools
       intIndex = 0;
       pgc = new ChapterInfo()
       {
-        Chapters = new List<Chapter>(),
+        Chapters = new List<ChapterEntry>(),
         FramesPerSecond = Settings.Default.DefaultFps,
         LangCode = Settings.Default.DefaultLangCode
       };
@@ -441,7 +416,7 @@ namespace JarrettVance.ChapterTools
         listChapters.Items.Clear();
         txtTitle.Text = pgc.Title;
         //fill list
-        foreach (Chapter c in pgc.Chapters)
+        foreach (ChapterEntry c in pgc.Chapters)
         {
           //don't show short last chapter depending on settings
           if (pgc.Duration != TimeSpan.Zero && miIgnoreShortLastChapter.Checked &&
@@ -507,7 +482,7 @@ namespace JarrettVance.ChapterTools
       try
       {
         intIndex = listChapters.SelectedIndices[0];
-        pgc.Chapters[intIndex] = new Chapter()
+        pgc.Chapters[intIndex] = new ChapterEntry()
         {
           Time = TimeSpan.Parse(txtChapterTime.Text),
           Name = txtChapterName.Text
@@ -528,7 +503,7 @@ namespace JarrettVance.ChapterTools
 
     private void ChapterControls_Click(object sender, System.EventArgs e)
     {
-      Chapter c;
+      ChapterEntry c;
       string name = null;
       Button btn = (Button)sender;
       switch (btn.Name)
@@ -548,7 +523,7 @@ namespace JarrettVance.ChapterTools
             return;
           }
           //create a new chapter
-          c = new Chapter() { Time = ts, Name = txtChapterName.Text };
+          c = new ChapterEntry() { Time = ts, Name = txtChapterName.Text };
           pgc.Chapters.Insert(intIndex, c);
           FreshChapterView();
           break;
@@ -562,16 +537,16 @@ namespace JarrettVance.ChapterTools
         case "btnUp":
           if (pgc.Chapters.Count < 2 || intIndex < 1) return;
           name = pgc.Chapters[intIndex].Name;
-          pgc.Chapters[intIndex] = new Chapter() { Name = pgc.Chapters[intIndex - 1].Name, Time = pgc.Chapters[intIndex].Time };
-          pgc.Chapters[intIndex - 1] = new Chapter() { Name = name, Time = pgc.Chapters[intIndex - 1].Time };
+          pgc.Chapters[intIndex] = new ChapterEntry() { Name = pgc.Chapters[intIndex - 1].Name, Time = pgc.Chapters[intIndex].Time };
+          pgc.Chapters[intIndex - 1] = new ChapterEntry() { Name = name, Time = pgc.Chapters[intIndex - 1].Time };
           intIndex--;
           FreshChapterView();
           break;
         case "btnDn":
           if (pgc.Chapters.Count < 2 || intIndex >= pgc.Chapters.Count - 1) return;
           name = pgc.Chapters[intIndex].Name;
-          pgc.Chapters[intIndex] = new Chapter() { Name = pgc.Chapters[intIndex + 1].Name, Time = pgc.Chapters[intIndex].Time };
-          pgc.Chapters[intIndex + 1] = new Chapter() { Name = name, Time = pgc.Chapters[intIndex + 1].Time };
+          pgc.Chapters[intIndex] = new ChapterEntry() { Name = pgc.Chapters[intIndex + 1].Name, Time = pgc.Chapters[intIndex].Time };
+          pgc.Chapters[intIndex + 1] = new ChapterEntry() { Name = name, Time = pgc.Chapters[intIndex + 1].Time };
           intIndex++;
           FreshChapterView();
           break;
@@ -619,7 +594,7 @@ namespace JarrettVance.ChapterTools
     {
       btnSearch.ContextMenu.Show(btnSearch, new Point(0, btnSearch.Height));
     }
-    
+
     private void lstResults_SelectedIndexChanged(object sender, EventArgs e)
     {
       if (lstResults.Items.Count < 1 || lstResults.SelectedIndices.Count < 1)
@@ -651,7 +626,7 @@ namespace JarrettVance.ChapterTools
     {
       for (int i = 0; i < pgc.Chapters.Count; i++)
       {
-        pgc.Chapters[i] = new Chapter() { Name = "Chapter " + (i + 1), Time = pgc.Chapters[i].Time };
+        pgc.Chapters[i] = new ChapterEntry() { Name = "Chapter " + (i + 1), Time = pgc.Chapters[i].Time };
       }
       FreshChapterView();
       tsslStatus.Text = "Chapter names reset successfully.";
@@ -722,19 +697,19 @@ namespace JarrettVance.ChapterTools
 
     private void miUpdate_Click(object sender, EventArgs e)
     {
-        int result = CheckForUpdate();
+      UpdateStatus status = Updater.CheckForUpdate(ShowUpdateDialog);
 
-        if (result == 0)
-            MessageBox.Show(this, "Failed to check for update.  Please ty again later.", "Warning");
-        else if (result == 1)
-            MessageBox.Show(this, "There are no updates available at this time.", "Update Check");
+      if (status == UpdateStatus.UpdateFailed)
+        MessageBox.Show(this, "Failed to check for update.  Please ty again later.", "Warning");
+      else if (status == UpdateStatus.NoUpdate)
+        MessageBox.Show(this, "There are no updates available at this time.", "Update Check");
     }
 
     private void miAutoCheck_Click(object sender, EventArgs e)
     {
-        miAutoCheck.Checked = !miAutoCheck.Checked;
-        Settings.Default.AutoCheckForUpdate = miAutoCheck.Checked;
-        Settings.Default.Save();
+      miAutoCheck.Checked = !miAutoCheck.Checked;
+      Settings.Default.AutoCheckForUpdate = miAutoCheck.Checked;
+      Settings.Default.Save();
     }
   }
 }
