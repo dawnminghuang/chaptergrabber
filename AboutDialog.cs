@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace JarrettVance.ChapterTools
 {
-  partial class frmAboutBox : Form
+  partial class AboutDialog : Form
   {
-    public frmAboutBox()
+    public AboutDialog()
     {
       InitializeComponent();
       this.Text = String.Format("About {0}", AssemblyTitle);

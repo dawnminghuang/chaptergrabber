@@ -45,7 +45,7 @@ namespace JarrettVance.ChapterTools
   /// <summary>
   /// Summary description for frmMain.
   /// </summary>
-  public partial class frmMain : System.Windows.Forms.Form
+  public partial class MainForm : System.Windows.Forms.Form
   {
     public string StartupFile { get; set; }
 
@@ -55,9 +55,6 @@ namespace JarrettVance.ChapterTools
 
     private void frmMain_Load(object sender, System.EventArgs e)
     {
-      if (Settings.Default.AutoCheckForUpdate)
-        ThreadPool.QueueUserWorkItem((w) => Updater.CheckForUpdate(ShowUpdateDialog));
-
       this.Height = Math.Min(560, Screen.GetWorkingArea(this).Height - 30);
       this.listChapters.Columns.Add("Time", 80, HorizontalAlignment.Left);
       this.listChapters.Columns.Add("Name", 190, HorizontalAlignment.Left);
@@ -86,12 +83,15 @@ namespace JarrettVance.ChapterTools
       miIgnoreShortLastChapter.Checked = Settings.Default.IgnoreShortLastChapter;
       miImportDurations.Checked = Settings.Default.ImportDurations;
       miAutoCheck.Checked = Settings.Default.AutoCheckForUpdate;
+      miAutoUseDb.Checked = Settings.Default.AutoUseDatabase;
 
       ContextMenu m = new ContextMenu();
-      m.MenuItems.Add(new MenuItem("TagChimp",
+      m.MenuItems.Add(new MenuItem("TagChimp by Title",
         (s, args) => { grabber = new TagChimpGrabber(); Search(); }));
       //m.MenuItems.Add(new MenuItem("MetaService",
       //  (s, args) => {grabber = new MetaServiceGrabber(); Search();}));
+      m.MenuItems.Add(new MenuItem("ChapterDB by Title",
+        (s, args) => { grabber = new DatabaseGrabber(); Search(); }));
       btnSearch.ContextMenu = m;
 
       LoadFpsMenus();
@@ -116,7 +116,16 @@ namespace JarrettVance.ChapterTools
       RefreshRecent();
       OnNew();
 
+      if (Settings.Default.AutoUseDatabase && Settings.Default.DatabaseUserName == "john@example.com")
+      {
+          MessageBox.Show(this, "Please enter your user information to access the database.");
+          miDatabaseCredentials_Click(null, null);
+      }
+
       if (!string.IsNullOrEmpty(StartupFile)) OpenFile(StartupFile);
+
+      if (Settings.Default.AutoCheckForUpdate)
+          ThreadPool.QueueUserWorkItem((w) => Updater.CheckForUpdate(ShowUpdateDialog));
     }
 
     void ShowUpdateDialog(Version appVersion, Version newVersion, XDocument doc)
@@ -147,7 +156,6 @@ namespace JarrettVance.ChapterTools
 
       foreach (string val in Settings.Default.FpsValues)
       {
-
         double fps = val.Contains('/') ? Convert.ToDouble(val.Split('/')[0], nfi) /
           Convert.ToDouble(val.Split('/')[1], nfi) : Convert.ToDouble(val, nfi);
         menuChangeFps.MenuItems.Add(new MenuItem("to " + fps.ToString("0.000"),
@@ -203,6 +211,8 @@ namespace JarrettVance.ChapterTools
 
     private void menuFileSave_Click(object sender, System.EventArgs e)
     {
+        UpdateDatabase(pgc);
+
       saveFileDialog.Filter = 
         "Chapters File (*.chapters)|*.chapters|" + 
         "Chapters Text File (*.txt)|*.txt|" + 
@@ -245,6 +255,25 @@ namespace JarrettVance.ChapterTools
         Settings.Default.LastSaveExt = ext;
         Settings.Default.Save();
       }
+    }
+
+    private void UpdateDatabase(ChapterInfo pgc)
+    {
+        picDb.Visible = true;
+        //duplicate
+        ChapterInfo ci = ChapterInfo.Load(pgc.ToXElement());
+        ThreadPool.QueueUserWorkItem((w) =>
+            {
+
+                // look for direct hits on the names and auto-load them
+                if (Settings.Default.AutoUseDatabase && pgc.SourceHash != null)
+                {
+                    foreach (ChapterGrabber g in ChapterGrabber.Grabbers)
+                        if (g.SupportsUpload) g.Upload(ci);
+                }
+
+                Invoke(new Action(() => picDb.Visible = false));
+            });
     }
 
     private void menuFileExit_Click(object sender, System.EventArgs e)
@@ -393,7 +422,10 @@ namespace JarrettVance.ChapterTools
         pgc = temp[0];
         if (pgc.FramesPerSecond == 0) pgc.FramesPerSecond = Settings.Default.DefaultFps;
         if (pgc.LangCode == null) pgc.LangCode = Settings.Default.DefaultLangCode;
+        AutoLoadNames();
+
         FreshChapterView();
+
         AddToRecent(file);
       }
       catch (Exception ex)
@@ -408,8 +440,37 @@ namespace JarrettVance.ChapterTools
       }
     }
 
+    private void AutoLoadNames()
+    {
+        picDb.Visible = true;
+        ThreadPool.QueueUserWorkItem((w) =>
+            {
+                // look for direct hit by hash and auto-load names if needed
+                if (Settings.Default.AutoUseDatabase && pgc.SourceHash != null)
+                {
+                    // only auto-populate if names are missing
+                    if (pgc.NamesNeedPopulated())
+                    {
+                        foreach (ChapterGrabber g in ChapterGrabber.Grabbers)
+                            if (g.SupportsHash)
+                            {
+                                g.PopulateNames(pgc.SourceHash, pgc);
+                                FreshChapterView();
+                            }
+                    }
+                }
+                Invoke(new Action(() => picDb.Visible = false));
+            });
+    }
+
     private void FreshChapterView()
     {
+        if (InvokeRequired)
+        {
+            Invoke(new MethodInvoker(FreshChapterView));
+            return;
+        }
+
       this.Cursor = Cursors.WaitCursor;
       try
       {
@@ -556,7 +617,7 @@ namespace JarrettVance.ChapterTools
 
     private void menuHelpAbout_Click(object sender, System.EventArgs e)
     {
-      using (frmAboutBox frm = new frmAboutBox())
+      using (AboutDialog frm = new AboutDialog())
       {
         frm.ShowDialog();
       }
@@ -632,7 +693,7 @@ namespace JarrettVance.ChapterTools
       tsslStatus.Text = "Chapter names reset successfully.";
     }
 
-    private void menuItem5_Click(object sender, EventArgs e)
+    private void miOpenDisc_Click(object sender, EventArgs e)
     {
       using (FolderBrowserDialog d = new FolderBrowserDialog())
       {
@@ -657,7 +718,7 @@ namespace JarrettVance.ChapterTools
               throw new Exception("The location was not detected as DVD, HD-DVD or Blu-Ray.");
 
 
-            using (frmStreamSelect frm = new frmStreamSelect(ex))
+            using (StreamSelectDialog frm = new StreamSelectDialog(ex))
             {
               ex.GetStreams(d.SelectedPath);
               if (frm.ShowDialog(this) == DialogResult.OK)
@@ -665,9 +726,10 @@ namespace JarrettVance.ChapterTools
                 pgc = frm.ProgramChain;
                 if (pgc.FramesPerSecond == 0) pgc.FramesPerSecond = Settings.Default.DefaultFps;
                 if (pgc.LangCode == null) pgc.LangCode = Settings.Default.DefaultLangCode;
+                AutoLoadNames();
+                FreshChapterView();
               }
             }
-            FreshChapterView();
           }
           catch (Exception ex)
           {
@@ -710,6 +772,19 @@ namespace JarrettVance.ChapterTools
       miAutoCheck.Checked = !miAutoCheck.Checked;
       Settings.Default.AutoCheckForUpdate = miAutoCheck.Checked;
       Settings.Default.Save();
+    }
+
+    private void miAutoUseDb_Click(object sender, EventArgs e)
+    {
+        miAutoUseDb.Checked = !miAutoUseDb.Checked;
+        Settings.Default.AutoUseDatabase = miAutoUseDb.Checked;
+        Settings.Default.Save();
+    }
+
+    private void miDatabaseCredentials_Click(object sender, EventArgs e)
+    {
+        using (DatabaseCredentialsDialog d = new DatabaseCredentialsDialog())
+            d.ShowDialog(this);
     }
   }
 }

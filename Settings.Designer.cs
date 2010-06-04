@@ -209,5 +209,53 @@ namespace JarrettVance.ChapterTools {
                 this["RemoteManifest"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoUseDatabase {
+            get {
+                return ((bool)(this["AutoUseDatabase"]));
+            }
+            set {
+                this["AutoUseDatabase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.chapterdb.org")]
+        public string DatabaseSite {
+            get {
+                return ((string)(this["DatabaseSite"]));
+            }
+            set {
+                this["DatabaseSite"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("a784c7d08e5fe192ca247d1a2dd5c27f")]
+        public string DatabaseApiKey {
+            get {
+                return ((string)(this["DatabaseApiKey"]));
+            }
+            set {
+                this["DatabaseApiKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("john@example.com")]
+        public string DatabaseUserName {
+            get {
+                return ((string)(this["DatabaseUserName"]));
+            }
+            set {
+                this["DatabaseUserName"] = value;
+            }
+        }
     }
 }

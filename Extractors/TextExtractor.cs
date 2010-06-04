@@ -55,8 +55,8 @@ namespace JarrettVance.ChapterTools.Extractors
         SourceName = location,
         SourceHash = ChapterExtractor.ComputeMD5Sum(location),
         FramesPerSecond = Settings.Default.DefaultFps,
-        Title = Path.GetFileNameWithoutExtension(location)
-
+        Title = Path.GetFileNameWithoutExtension(location),
+        Extractor = "ChapterText"
       });
 
       OnStreamDetected(pgcs[0]);

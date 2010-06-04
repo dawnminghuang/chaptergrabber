@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Xml.Linq;
+using System.Windows.Forms;
 
 namespace JarrettVance.ChapterTools.Extractors
 {
@@ -31,6 +32,7 @@ namespace JarrettVance.ChapterTools.Extractors
           pgc.SourceHash = ChapterExtractor.ComputeMD5Sum(location);
           pgc.SourceType = "HD-DVD";
           pgc.FramesPerSecond = 24D;
+          pgc.Extractor = Application.ProductName + " " + Application.ProductVersion;
           OnStreamDetected(pgc);
 
           int tickBaseDivisor = (int?)title.Attribute("tickBaseDivisor") ?? 1;

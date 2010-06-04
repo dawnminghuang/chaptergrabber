@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace JarrettVance.ChapterTools.Extractors
 {
@@ -26,6 +27,7 @@ namespace JarrettVance.ChapterTools.Extractors
       pgc.SourceName = location;
       pgc.SourceHash = ChapterExtractor.ComputeMD5Sum(location);
       pgc.SourceType = "Blu-Ray";
+      pgc.Extractor = Application.ProductName + " " + Application.ProductVersion;
       pgc.Title = Path.GetFileNameWithoutExtension(location);
 
       FileInfo fileInfo = new FileInfo(location);

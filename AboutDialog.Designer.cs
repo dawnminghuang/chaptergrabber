@@ -1,6 +1,6 @@
 ﻿namespace JarrettVance.ChapterTools
 {
-  partial class frmAboutBox
+  partial class AboutDialog
   {
     /// <summary>
     /// Required designer variable.
@@ -132,7 +132,7 @@
         this.linkWeb.Text = "Webpage";
         this.linkWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkWeb_LinkClicked);
         // 
-        // frmAboutBox
+        // AboutDialog
         // 
         this.AcceptButton = this.okButton;
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,7 +142,7 @@
         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
         this.MaximizeBox = false;
         this.MinimizeBox = false;
-        this.Name = "frmAboutBox";
+        this.Name = "AboutDialog";
         this.Padding = new System.Windows.Forms.Padding(9);
         this.ShowIcon = false;
         this.ShowInTaskbar = false;
