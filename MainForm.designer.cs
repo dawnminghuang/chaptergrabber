@@ -117,80 +117,80 @@ namespace JarrettVance.ChapterTools
     /// </summary>
     private void InitializeComponent()
     {
-        this.components = new System.ComponentModel.Container();
-        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-        this.mainMenu = new System.Windows.Forms.MainMenu(this.components);
-        this.menuFile = new System.Windows.Forms.MenuItem();
-        this.menuFileNew = new System.Windows.Forms.MenuItem();
-        this.menuItem4 = new System.Windows.Forms.MenuItem();
-        this.miOpenFile = new System.Windows.Forms.MenuItem();
-        this.miOpenDisc = new System.Windows.Forms.MenuItem();
-        this.menuFileSave = new System.Windows.Forms.MenuItem();
-        this.menuItem13 = new System.Windows.Forms.MenuItem();
-        this.menuRecentFiles = new System.Windows.Forms.MenuItem();
-        this.menuItem1 = new System.Windows.Forms.MenuItem();
-        this.menuFileExit = new System.Windows.Forms.MenuItem();
-        this.menuEdit = new System.Windows.Forms.MenuItem();
-        this.menuResetNames = new System.Windows.Forms.MenuItem();
-        this.menuChangeFps = new System.Windows.Forms.MenuItem();
-        this.menuEditClipboardImport = new System.Windows.Forms.MenuItem();
-        this.miSearch = new System.Windows.Forms.MenuItem();
-        this.menuCurrentFps = new System.Windows.Forms.MenuItem();
-        this.menuLang = new System.Windows.Forms.MenuItem();
-        this.menuItem2 = new System.Windows.Forms.MenuItem();
-        this.miImportDurations = new System.Windows.Forms.MenuItem();
-        this.miIgnoreShortLastChapter = new System.Windows.Forms.MenuItem();
-        this.miAutoUseDb = new System.Windows.Forms.MenuItem();
-        this.menuHelp = new System.Windows.Forms.MenuItem();
-        this.miAutoCheck = new System.Windows.Forms.MenuItem();
-        this.miUpdate = new System.Windows.Forms.MenuItem();
-        this.menuHelpAbout = new System.Windows.Forms.MenuItem();
-        this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-        this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-        this.txtTitle = new System.Windows.Forms.TextBox();
-        this.lblTitle = new System.Windows.Forms.Label();
-        this.listChapters = new System.Windows.Forms.ListView();
-        this.txtChapterName = new System.Windows.Forms.TextBox();
-        this.label6 = new System.Windows.Forms.Label();
-        this.txtChapterTime = new System.Windows.Forms.TextBox();
-        this.label3 = new System.Windows.Forms.Label();
-        this.grpChapters = new System.Windows.Forms.GroupBox();
-        this.btnDn = new System.Windows.Forms.Button();
-        this.btnUp = new System.Windows.Forms.Button();
-        this.btnDelete = new System.Windows.Forms.Button();
-        this.btnAdd = new System.Windows.Forms.Button();
-        this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-        this.grpResults = new System.Windows.Forms.GroupBox();
-        this.lstResults = new System.Windows.Forms.ListBox();
-        this.btnLookup = new System.Windows.Forms.Button();
-        this.btnSearch = new System.Windows.Forms.Button();
-        this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
-        this.tsslDuration = new System.Windows.Forms.ToolStripStatusLabel();
-        this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-        this.tsslFps = new System.Windows.Forms.ToolStripDropDownButton();
-        this.tsslLang = new System.Windows.Forms.ToolStripDropDownButton();
-        this.miDatabaseCredentials = new System.Windows.Forms.MenuItem();
-        this.picDb = new System.Windows.Forms.PictureBox();
-        this.grpChapters.SuspendLayout();
-        this.splitContainer1.Panel1.SuspendLayout();
-        this.splitContainer1.Panel2.SuspendLayout();
-        this.splitContainer1.SuspendLayout();
-        this.grpResults.SuspendLayout();
-        this.statusStrip1.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)(this.picDb)).BeginInit();
-        this.SuspendLayout();
-        // 
-        // mainMenu
-        // 
-        this.mainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+      this.components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+      this.mainMenu = new System.Windows.Forms.MainMenu(this.components);
+      this.menuFile = new System.Windows.Forms.MenuItem();
+      this.menuFileNew = new System.Windows.Forms.MenuItem();
+      this.menuItem4 = new System.Windows.Forms.MenuItem();
+      this.miOpenFile = new System.Windows.Forms.MenuItem();
+      this.miOpenDisc = new System.Windows.Forms.MenuItem();
+      this.menuFileSave = new System.Windows.Forms.MenuItem();
+      this.menuItem13 = new System.Windows.Forms.MenuItem();
+      this.menuRecentFiles = new System.Windows.Forms.MenuItem();
+      this.menuItem1 = new System.Windows.Forms.MenuItem();
+      this.menuFileExit = new System.Windows.Forms.MenuItem();
+      this.menuEdit = new System.Windows.Forms.MenuItem();
+      this.menuResetNames = new System.Windows.Forms.MenuItem();
+      this.menuChangeFps = new System.Windows.Forms.MenuItem();
+      this.menuEditClipboardImport = new System.Windows.Forms.MenuItem();
+      this.miSearch = new System.Windows.Forms.MenuItem();
+      this.menuCurrentFps = new System.Windows.Forms.MenuItem();
+      this.menuLang = new System.Windows.Forms.MenuItem();
+      this.miDatabaseCredentials = new System.Windows.Forms.MenuItem();
+      this.menuItem2 = new System.Windows.Forms.MenuItem();
+      this.miImportDurations = new System.Windows.Forms.MenuItem();
+      this.miIgnoreShortLastChapter = new System.Windows.Forms.MenuItem();
+      this.miAutoUseDb = new System.Windows.Forms.MenuItem();
+      this.menuHelp = new System.Windows.Forms.MenuItem();
+      this.miAutoCheck = new System.Windows.Forms.MenuItem();
+      this.miUpdate = new System.Windows.Forms.MenuItem();
+      this.menuHelpAbout = new System.Windows.Forms.MenuItem();
+      this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+      this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+      this.txtTitle = new System.Windows.Forms.TextBox();
+      this.lblTitle = new System.Windows.Forms.Label();
+      this.listChapters = new System.Windows.Forms.ListView();
+      this.txtChapterName = new System.Windows.Forms.TextBox();
+      this.label6 = new System.Windows.Forms.Label();
+      this.txtChapterTime = new System.Windows.Forms.TextBox();
+      this.label3 = new System.Windows.Forms.Label();
+      this.grpChapters = new System.Windows.Forms.GroupBox();
+      this.btnDn = new System.Windows.Forms.Button();
+      this.btnUp = new System.Windows.Forms.Button();
+      this.btnDelete = new System.Windows.Forms.Button();
+      this.btnAdd = new System.Windows.Forms.Button();
+      this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+      this.picDb = new System.Windows.Forms.PictureBox();
+      this.grpResults = new System.Windows.Forms.GroupBox();
+      this.lstResults = new System.Windows.Forms.ListBox();
+      this.btnLookup = new System.Windows.Forms.Button();
+      this.btnSearch = new System.Windows.Forms.Button();
+      this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
+      this.tsslDuration = new System.Windows.Forms.ToolStripStatusLabel();
+      this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+      this.tsslFps = new System.Windows.Forms.ToolStripDropDownButton();
+      this.tsslLang = new System.Windows.Forms.ToolStripDropDownButton();
+      this.grpChapters.SuspendLayout();
+      this.splitContainer1.Panel1.SuspendLayout();
+      this.splitContainer1.Panel2.SuspendLayout();
+      this.splitContainer1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picDb)).BeginInit();
+      this.grpResults.SuspendLayout();
+      this.statusStrip1.SuspendLayout();
+      this.SuspendLayout();
+      // 
+      // mainMenu
+      // 
+      this.mainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuFile,
             this.menuEdit,
             this.menuHelp});
-        // 
-        // menuFile
-        // 
-        this.menuFile.Index = 0;
-        this.menuFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+      // 
+      // menuFile
+      // 
+      this.menuFile.Index = 0;
+      this.menuFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuFileNew,
             this.menuItem4,
             this.miOpenFile,
@@ -200,66 +200,66 @@ namespace JarrettVance.ChapterTools
             this.menuRecentFiles,
             this.menuItem1,
             this.menuFileExit});
-        this.menuFile.MergeType = System.Windows.Forms.MenuMerge.Replace;
-        this.menuFile.Text = "File";
-        // 
-        // menuFileNew
-        // 
-        this.menuFileNew.Index = 0;
-        this.menuFileNew.Shortcut = System.Windows.Forms.Shortcut.CtrlN;
-        this.menuFileNew.Text = "New";
-        this.menuFileNew.Click += new System.EventHandler(this.menuFileNew_Click);
-        // 
-        // menuItem4
-        // 
-        this.menuItem4.Index = 1;
-        this.menuItem4.Text = "-";
-        // 
-        // miOpenFile
-        // 
-        this.miOpenFile.Index = 2;
-        this.miOpenFile.Text = "Open File";
-        this.miOpenFile.Click += new System.EventHandler(this.menuFileOpen_Click);
-        // 
-        // miOpenDisc
-        // 
-        this.miOpenDisc.Index = 3;
-        this.miOpenDisc.Text = "Open Disc";
-        this.miOpenDisc.Click += new System.EventHandler(this.miOpenDisc_Click);
-        // 
-        // menuFileSave
-        // 
-        this.menuFileSave.Index = 4;
-        this.menuFileSave.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
-        this.menuFileSave.Text = "Save";
-        this.menuFileSave.Click += new System.EventHandler(this.menuFileSave_Click);
-        // 
-        // menuItem13
-        // 
-        this.menuItem13.Index = 5;
-        this.menuItem13.Text = "-";
-        // 
-        // menuRecentFiles
-        // 
-        this.menuRecentFiles.Index = 6;
-        this.menuRecentFiles.Text = "Recent Files";
-        // 
-        // menuItem1
-        // 
-        this.menuItem1.Index = 7;
-        this.menuItem1.Text = "-";
-        // 
-        // menuFileExit
-        // 
-        this.menuFileExit.Index = 8;
-        this.menuFileExit.Shortcut = System.Windows.Forms.Shortcut.AltF4;
-        this.menuFileExit.Text = "Exit";
-        this.menuFileExit.Click += new System.EventHandler(this.menuFileExit_Click);
-        // 
-        // menuEdit
-        // 
-        this.menuEdit.Index = 1;
-        this.menuEdit.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+      this.menuFile.MergeType = System.Windows.Forms.MenuMerge.Replace;
+      this.menuFile.Text = "File";
+      // 
+      // menuFileNew
+      // 
+      this.menuFileNew.Index = 0;
+      this.menuFileNew.Shortcut = System.Windows.Forms.Shortcut.CtrlN;
+      this.menuFileNew.Text = "New";
+      this.menuFileNew.Click += new System.EventHandler(this.menuFileNew_Click);
+      // 
+      // menuItem4
+      // 
+      this.menuItem4.Index = 1;
+      this.menuItem4.Text = "-";
+      // 
+      // miOpenFile
+      // 
+      this.miOpenFile.Index = 2;
+      this.miOpenFile.Text = "Open File";
+      this.miOpenFile.Click += new System.EventHandler(this.menuFileOpen_Click);
+      // 
+      // miOpenDisc
+      // 
+      this.miOpenDisc.Index = 3;
+      this.miOpenDisc.Text = "Open Disc";
+      this.miOpenDisc.Click += new System.EventHandler(this.miOpenDisc_Click);
+      // 
+      // menuFileSave
+      // 
+      this.menuFileSave.Index = 4;
+      this.menuFileSave.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
+      this.menuFileSave.Text = "Save";
+      this.menuFileSave.Click += new System.EventHandler(this.menuFileSave_Click);
+      // 
+      // menuItem13
+      // 
+      this.menuItem13.Index = 5;
+      this.menuItem13.Text = "-";
+      // 
+      // menuRecentFiles
+      // 
+      this.menuRecentFiles.Index = 6;
+      this.menuRecentFiles.Text = "Recent Files";
+      // 
+      // menuItem1
+      // 
+      this.menuItem1.Index = 7;
+      this.menuItem1.Text = "-";
+      // 
+      // menuFileExit
+      // 
+      this.menuFileExit.Index = 8;
+      this.menuFileExit.Shortcut = System.Windows.Forms.Shortcut.AltF4;
+      this.menuFileExit.Text = "Exit";
+      this.menuFileExit.Click += new System.EventHandler(this.menuFileExit_Click);
+      // 
+      // menuEdit
+      // 
+      this.menuEdit.Index = 1;
+      this.menuEdit.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuResetNames,
             this.menuChangeFps,
             this.menuEditClipboardImport,
@@ -271,406 +271,407 @@ namespace JarrettVance.ChapterTools
             this.miImportDurations,
             this.miIgnoreShortLastChapter,
             this.miAutoUseDb});
-        this.menuEdit.Text = "Edit";
-        // 
-        // menuResetNames
-        // 
-        this.menuResetNames.Index = 0;
-        this.menuResetNames.Text = "Reset Chapter Names";
-        this.menuResetNames.Click += new System.EventHandler(this.menuResetNames_Click);
-        // 
-        // menuChangeFps
-        // 
-        this.menuChangeFps.Index = 1;
-        this.menuChangeFps.Text = "Convert Chapter Times by FPS";
-        // 
-        // menuEditClipboardImport
-        // 
-        this.menuEditClipboardImport.Index = 2;
-        this.menuEditClipboardImport.Shortcut = System.Windows.Forms.Shortcut.F2;
-        this.menuEditClipboardImport.Text = "Import Names from Clipboard";
-        this.menuEditClipboardImport.Click += new System.EventHandler(this.menuEditClipboardImport_Click);
-        // 
-        // miSearch
-        // 
-        this.miSearch.Index = 3;
-        this.miSearch.Shortcut = System.Windows.Forms.Shortcut.F3;
-        this.miSearch.Text = "Search Names on Internet";
-        this.miSearch.Click += new System.EventHandler(this.btnSearch_Click);
-        // 
-        // menuCurrentFps
-        // 
-        this.menuCurrentFps.Index = 4;
-        this.menuCurrentFps.Text = "Current FPS";
-        // 
-        // menuLang
-        // 
-        this.menuLang.Index = 5;
-        this.menuLang.Text = "Current Language";
-        // 
-        // menuItem2
-        // 
-        this.menuItem2.Index = 7;
-        this.menuItem2.Text = "-";
-        // 
-        // miImportDurations
-        // 
-        this.miImportDurations.Checked = true;
-        this.miImportDurations.Index = 8;
-        this.miImportDurations.Text = "Import Duration on Names";
-        this.miImportDurations.Click += new System.EventHandler(this.menuEditTimesImport_Click);
-        // 
-        // miIgnoreShortLastChapter
-        // 
-        this.miIgnoreShortLastChapter.Checked = true;
-        this.miIgnoreShortLastChapter.Index = 9;
-        this.miIgnoreShortLastChapter.Text = "Ignore Short Last Chapter";
-        this.miIgnoreShortLastChapter.Click += new System.EventHandler(this.miIgnoreShortLastChapter_Click);
-        // 
-        // miAutoUseDb
-        // 
-        this.miAutoUseDb.Checked = true;
-        this.miAutoUseDb.Index = 10;
-        this.miAutoUseDb.Text = "Automatically Use Database";
-        this.miAutoUseDb.Click += new System.EventHandler(this.miAutoUseDb_Click);
-        // 
-        // menuHelp
-        // 
-        this.menuHelp.Index = 2;
-        this.menuHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+      this.menuEdit.Text = "Edit";
+      // 
+      // menuResetNames
+      // 
+      this.menuResetNames.Index = 0;
+      this.menuResetNames.Text = "Reset Chapter Names";
+      this.menuResetNames.Click += new System.EventHandler(this.menuResetNames_Click);
+      // 
+      // menuChangeFps
+      // 
+      this.menuChangeFps.Index = 1;
+      this.menuChangeFps.Text = "Convert Chapter Times by FPS";
+      // 
+      // menuEditClipboardImport
+      // 
+      this.menuEditClipboardImport.Index = 2;
+      this.menuEditClipboardImport.Shortcut = System.Windows.Forms.Shortcut.F2;
+      this.menuEditClipboardImport.Text = "Import Names from Clipboard";
+      this.menuEditClipboardImport.Click += new System.EventHandler(this.menuEditClipboardImport_Click);
+      // 
+      // miSearch
+      // 
+      this.miSearch.Index = 3;
+      this.miSearch.Shortcut = System.Windows.Forms.Shortcut.F3;
+      this.miSearch.Text = "Search Names on Internet";
+      this.miSearch.Click += new System.EventHandler(this.btnSearch_Click);
+      // 
+      // menuCurrentFps
+      // 
+      this.menuCurrentFps.Index = 4;
+      this.menuCurrentFps.Text = "Current FPS";
+      // 
+      // menuLang
+      // 
+      this.menuLang.Index = 5;
+      this.menuLang.Text = "Current Language";
+      // 
+      // miDatabaseCredentials
+      // 
+      this.miDatabaseCredentials.Index = 6;
+      this.miDatabaseCredentials.Text = "Database Credentials";
+      this.miDatabaseCredentials.Click += new System.EventHandler(this.miDatabaseCredentials_Click);
+      // 
+      // menuItem2
+      // 
+      this.menuItem2.Index = 7;
+      this.menuItem2.Text = "-";
+      // 
+      // miImportDurations
+      // 
+      this.miImportDurations.Checked = true;
+      this.miImportDurations.Index = 8;
+      this.miImportDurations.Text = "Import Duration on Names";
+      this.miImportDurations.Click += new System.EventHandler(this.menuEditTimesImport_Click);
+      // 
+      // miIgnoreShortLastChapter
+      // 
+      this.miIgnoreShortLastChapter.Checked = true;
+      this.miIgnoreShortLastChapter.Index = 9;
+      this.miIgnoreShortLastChapter.Text = "Ignore Short Last Chapter";
+      this.miIgnoreShortLastChapter.Click += new System.EventHandler(this.miIgnoreShortLastChapter_Click);
+      // 
+      // miAutoUseDb
+      // 
+      this.miAutoUseDb.Checked = true;
+      this.miAutoUseDb.Index = 10;
+      this.miAutoUseDb.Text = "Automatically Use Database";
+      this.miAutoUseDb.Click += new System.EventHandler(this.miAutoUseDb_Click);
+      // 
+      // menuHelp
+      // 
+      this.menuHelp.Index = 2;
+      this.menuHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.miAutoCheck,
             this.miUpdate,
             this.menuHelpAbout});
-        this.menuHelp.Text = "Help";
-        // 
-        // miAutoCheck
-        // 
-        this.miAutoCheck.Checked = true;
-        this.miAutoCheck.Index = 0;
-        this.miAutoCheck.Text = "Check for Update on Startup";
-        this.miAutoCheck.Click += new System.EventHandler(this.miAutoCheck_Click);
-        // 
-        // miUpdate
-        // 
-        this.miUpdate.Index = 1;
-        this.miUpdate.Text = "Check for Update Now";
-        this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
-        // 
-        // menuHelpAbout
-        // 
-        this.menuHelpAbout.Index = 2;
-        this.menuHelpAbout.Shortcut = System.Windows.Forms.Shortcut.F1;
-        this.menuHelpAbout.Text = "About";
-        this.menuHelpAbout.Click += new System.EventHandler(this.menuHelpAbout_Click);
-        // 
-        // saveFileDialog
-        // 
-        this.saveFileDialog.FileName = "doc1";
-        // 
-        // txtTitle
-        // 
-        this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-        this.txtTitle.Location = new System.Drawing.Point(37, 7);
-        this.txtTitle.Name = "txtTitle";
-        this.txtTitle.Size = new System.Drawing.Size(283, 20);
-        this.txtTitle.TabIndex = 0;
-        this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
-        // 
-        // lblTitle
-        // 
-        this.lblTitle.AutoSize = true;
-        this.lblTitle.Location = new System.Drawing.Point(4, 10);
-        this.lblTitle.Name = "lblTitle";
-        this.lblTitle.Size = new System.Drawing.Size(27, 13);
-        this.lblTitle.TabIndex = 1;
-        this.lblTitle.Text = "Title";
-        this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-        // 
-        // listChapters
-        // 
-        this.listChapters.Activation = System.Windows.Forms.ItemActivation.OneClick;
-        this.listChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-        this.listChapters.FullRowSelect = true;
-        this.listChapters.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-        this.listChapters.HideSelection = false;
-        this.listChapters.LabelWrap = false;
-        this.listChapters.Location = new System.Drawing.Point(6, 16);
-        this.listChapters.MultiSelect = false;
-        this.listChapters.Name = "listChapters";
-        this.listChapters.Size = new System.Drawing.Size(305, 219);
-        this.listChapters.TabIndex = 10;
-        this.listChapters.UseCompatibleStateImageBehavior = false;
-        this.listChapters.View = System.Windows.Forms.View.Details;
-        this.listChapters.SelectedIndexChanged += new System.EventHandler(this.listChapters_SelectedIndexChanged);
-        // 
-        // txtChapterName
-        // 
-        this.txtChapterName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-        this.txtChapterName.Location = new System.Drawing.Point(48, 268);
-        this.txtChapterName.MaxLength = 300;
-        this.txtChapterName.Name = "txtChapterName";
-        this.txtChapterName.Size = new System.Drawing.Size(258, 20);
-        this.txtChapterName.TabIndex = 4;
-        this.txtChapterName.Text = "Chapter 0";
-        this.txtChapterName.TextChanged += new System.EventHandler(this.txtChapter_TextChanged);
-        // 
-        // label6
-        // 
-        this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-        this.label6.Location = new System.Drawing.Point(8, 270);
-        this.label6.Name = "label6";
-        this.label6.Size = new System.Drawing.Size(48, 16);
-        this.label6.TabIndex = 3;
-        this.label6.Text = "Name";
-        this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // txtChapterTime
-        // 
-        this.txtChapterTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-        this.txtChapterTime.Location = new System.Drawing.Point(48, 244);
-        this.txtChapterTime.MaxLength = 12;
-        this.txtChapterTime.Name = "txtChapterTime";
-        this.txtChapterTime.Size = new System.Drawing.Size(135, 20);
-        this.txtChapterTime.TabIndex = 2;
-        this.txtChapterTime.Text = "00:00:00.000";
-        this.txtChapterTime.TextChanged += new System.EventHandler(this.txtChapter_TextChanged);
-        // 
-        // label3
-        // 
-        this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-        this.label3.Location = new System.Drawing.Point(8, 246);
-        this.label3.Name = "label3";
-        this.label3.Size = new System.Drawing.Size(48, 16);
-        this.label3.TabIndex = 1;
-        this.label3.Text = "Time";
-        this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // grpChapters
-        // 
-        this.grpChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-        this.grpChapters.Controls.Add(this.listChapters);
-        this.grpChapters.Controls.Add(this.btnDn);
-        this.grpChapters.Controls.Add(this.btnUp);
-        this.grpChapters.Controls.Add(this.btnDelete);
-        this.grpChapters.Controls.Add(this.btnAdd);
-        this.grpChapters.Controls.Add(this.txtChapterName);
-        this.grpChapters.Controls.Add(this.label6);
-        this.grpChapters.Controls.Add(this.txtChapterTime);
-        this.grpChapters.Controls.Add(this.label3);
-        this.grpChapters.Location = new System.Drawing.Point(3, 32);
-        this.grpChapters.Name = "grpChapters";
-        this.grpChapters.Size = new System.Drawing.Size(323, 295);
-        this.grpChapters.TabIndex = 7;
-        this.grpChapters.TabStop = false;
-        this.grpChapters.Text = "Chapters";
-        // 
-        // btnDn
-        // 
-        this.btnDn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        this.btnDn.Image = ((System.Drawing.Image)(resources.GetObject("btnDn.Image")));
-        this.btnDn.Location = new System.Drawing.Point(225, 241);
-        this.btnDn.Name = "btnDn";
-        this.btnDn.Size = new System.Drawing.Size(24, 24);
-        this.btnDn.TabIndex = 9;
-        this.btnDn.Click += new System.EventHandler(this.ChapterControls_Click);
-        // 
-        // btnUp
-        // 
-        this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        this.btnUp.Image = ((System.Drawing.Image)(resources.GetObject("btnUp.Image")));
-        this.btnUp.Location = new System.Drawing.Point(201, 241);
-        this.btnUp.Name = "btnUp";
-        this.btnUp.Size = new System.Drawing.Size(24, 24);
-        this.btnUp.TabIndex = 8;
-        this.btnUp.Click += new System.EventHandler(this.ChapterControls_Click);
-        // 
-        // btnDelete
-        // 
-        this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-        this.btnDelete.Location = new System.Drawing.Point(281, 241);
-        this.btnDelete.Name = "btnDelete";
-        this.btnDelete.Size = new System.Drawing.Size(24, 24);
-        this.btnDelete.TabIndex = 6;
-        this.btnDelete.Click += new System.EventHandler(this.ChapterControls_Click);
-        // 
-        // btnAdd
-        // 
-        this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-        this.btnAdd.Location = new System.Drawing.Point(257, 241);
-        this.btnAdd.Name = "btnAdd";
-        this.btnAdd.Size = new System.Drawing.Size(24, 24);
-        this.btnAdd.TabIndex = 5;
-        this.btnAdd.Click += new System.EventHandler(this.ChapterControls_Click);
-        // 
-        // splitContainer1
-        // 
-        this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-        this.splitContainer1.Location = new System.Drawing.Point(3, 2);
-        this.splitContainer1.Name = "splitContainer1";
-        // 
-        // splitContainer1.Panel1
-        // 
-        this.splitContainer1.Panel1.Controls.Add(this.picDb);
-        this.splitContainer1.Panel1.Controls.Add(this.grpChapters);
-        this.splitContainer1.Panel1.Controls.Add(this.txtTitle);
-        this.splitContainer1.Panel1.Controls.Add(this.lblTitle);
-        // 
-        // splitContainer1.Panel2
-        // 
-        this.splitContainer1.Panel2.Controls.Add(this.grpResults);
-        this.splitContainer1.Panel2.Controls.Add(this.btnSearch);
-        this.splitContainer1.Size = new System.Drawing.Size(506, 330);
-        this.splitContainer1.SplitterDistance = 334;
-        this.splitContainer1.TabIndex = 8;
-        // 
-        // grpResults
-        // 
-        this.grpResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-        this.grpResults.Controls.Add(this.lstResults);
-        this.grpResults.Controls.Add(this.btnLookup);
-        this.grpResults.Location = new System.Drawing.Point(3, 32);
-        this.grpResults.Name = "grpResults";
-        this.grpResults.Size = new System.Drawing.Size(167, 295);
-        this.grpResults.TabIndex = 0;
-        this.grpResults.TabStop = false;
-        this.grpResults.Text = "Results";
-        // 
-        // lstResults
-        // 
-        this.lstResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-        this.lstResults.FormattingEnabled = true;
-        this.lstResults.Location = new System.Drawing.Point(6, 16);
-        this.lstResults.Name = "lstResults";
-        this.lstResults.Size = new System.Drawing.Size(150, 264);
-        this.lstResults.TabIndex = 0;
-        this.lstResults.SelectedIndexChanged += new System.EventHandler(this.lstResults_SelectedIndexChanged);
-        // 
-        // btnLookup
-        // 
-        this.btnLookup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-        this.btnLookup.Enabled = false;
-        this.btnLookup.Image = ((System.Drawing.Image)(resources.GetObject("btnLookup.Image")));
-        this.btnLookup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        this.btnLookup.Location = new System.Drawing.Point(6, 268);
-        this.btnLookup.Name = "btnLookup";
-        this.btnLookup.Size = new System.Drawing.Size(67, 24);
-        this.btnLookup.TabIndex = 10;
-        this.btnLookup.Text = "Lookup";
-        this.btnLookup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-        this.btnLookup.Visible = false;
-        // 
-        // btnSearch
-        // 
-        this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-        this.btnSearch.AutoSize = true;
-        this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-        this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        this.btnSearch.Location = new System.Drawing.Point(52, 5);
-        this.btnSearch.Name = "btnSearch";
-        this.btnSearch.Size = new System.Drawing.Size(68, 24);
-        this.btnSearch.TabIndex = 9;
-        this.btnSearch.Text = "Search";
-        this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-        this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-        // 
-        // tsslStatus
-        // 
-        this.tsslStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
-        this.tsslStatus.Name = "tsslStatus";
-        this.tsslStatus.Size = new System.Drawing.Size(216, 17);
-        this.tsslStatus.Spring = true;
-        this.tsslStatus.Text = "Ready";
-        this.tsslStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // tsslDuration
-        // 
-        this.tsslDuration.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
-        this.tsslDuration.Name = "tsslDuration";
-        this.tsslDuration.Size = new System.Drawing.Size(122, 17);
-        this.tsslDuration.Text = "Duration: 00:00:00.000";
-        // 
-        // statusStrip1
-        // 
-        this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+      this.menuHelp.Text = "Help";
+      // 
+      // miAutoCheck
+      // 
+      this.miAutoCheck.Checked = true;
+      this.miAutoCheck.Index = 0;
+      this.miAutoCheck.Text = "Check for Update on Startup";
+      this.miAutoCheck.Click += new System.EventHandler(this.miAutoCheck_Click);
+      // 
+      // miUpdate
+      // 
+      this.miUpdate.Index = 1;
+      this.miUpdate.Text = "Check for Update Now";
+      this.miUpdate.Click += new System.EventHandler(this.miUpdate_Click);
+      // 
+      // menuHelpAbout
+      // 
+      this.menuHelpAbout.Index = 2;
+      this.menuHelpAbout.Shortcut = System.Windows.Forms.Shortcut.F1;
+      this.menuHelpAbout.Text = "About";
+      this.menuHelpAbout.Click += new System.EventHandler(this.menuHelpAbout_Click);
+      // 
+      // saveFileDialog
+      // 
+      this.saveFileDialog.FileName = "doc1";
+      // 
+      // txtTitle
+      // 
+      this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                  | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtTitle.Location = new System.Drawing.Point(37, 7);
+      this.txtTitle.Name = "txtTitle";
+      this.txtTitle.Size = new System.Drawing.Size(283, 20);
+      this.txtTitle.TabIndex = 0;
+      this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
+      // 
+      // lblTitle
+      // 
+      this.lblTitle.AutoSize = true;
+      this.lblTitle.Location = new System.Drawing.Point(4, 10);
+      this.lblTitle.Name = "lblTitle";
+      this.lblTitle.Size = new System.Drawing.Size(27, 13);
+      this.lblTitle.TabIndex = 1;
+      this.lblTitle.Text = "Title";
+      this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      // 
+      // listChapters
+      // 
+      this.listChapters.Activation = System.Windows.Forms.ItemActivation.OneClick;
+      this.listChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                  | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.listChapters.FullRowSelect = true;
+      this.listChapters.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+      this.listChapters.HideSelection = false;
+      this.listChapters.LabelWrap = false;
+      this.listChapters.Location = new System.Drawing.Point(6, 16);
+      this.listChapters.MultiSelect = false;
+      this.listChapters.Name = "listChapters";
+      this.listChapters.Size = new System.Drawing.Size(305, 219);
+      this.listChapters.TabIndex = 10;
+      this.listChapters.UseCompatibleStateImageBehavior = false;
+      this.listChapters.View = System.Windows.Forms.View.Details;
+      this.listChapters.SelectedIndexChanged += new System.EventHandler(this.listChapters_SelectedIndexChanged);
+      // 
+      // txtChapterName
+      // 
+      this.txtChapterName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtChapterName.Location = new System.Drawing.Point(48, 268);
+      this.txtChapterName.MaxLength = 300;
+      this.txtChapterName.Name = "txtChapterName";
+      this.txtChapterName.Size = new System.Drawing.Size(258, 20);
+      this.txtChapterName.TabIndex = 4;
+      this.txtChapterName.Text = "Chapter 0";
+      this.txtChapterName.TextChanged += new System.EventHandler(this.txtChapter_TextChanged);
+      this.txtChapterName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChapterName_KeyDown);
+      // 
+      // label6
+      // 
+      this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.label6.Location = new System.Drawing.Point(8, 270);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(48, 16);
+      this.label6.TabIndex = 3;
+      this.label6.Text = "Name";
+      this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // txtChapterTime
+      // 
+      this.txtChapterTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtChapterTime.Location = new System.Drawing.Point(48, 244);
+      this.txtChapterTime.MaxLength = 12;
+      this.txtChapterTime.Name = "txtChapterTime";
+      this.txtChapterTime.Size = new System.Drawing.Size(135, 20);
+      this.txtChapterTime.TabIndex = 2;
+      this.txtChapterTime.Text = "00:00:00.000";
+      this.txtChapterTime.TextChanged += new System.EventHandler(this.txtChapter_TextChanged);
+      // 
+      // label3
+      // 
+      this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.label3.Location = new System.Drawing.Point(8, 246);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(48, 16);
+      this.label3.TabIndex = 1;
+      this.label3.Text = "Time";
+      this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // grpChapters
+      // 
+      this.grpChapters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                  | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.grpChapters.Controls.Add(this.listChapters);
+      this.grpChapters.Controls.Add(this.btnDn);
+      this.grpChapters.Controls.Add(this.btnUp);
+      this.grpChapters.Controls.Add(this.btnDelete);
+      this.grpChapters.Controls.Add(this.btnAdd);
+      this.grpChapters.Controls.Add(this.txtChapterName);
+      this.grpChapters.Controls.Add(this.label6);
+      this.grpChapters.Controls.Add(this.txtChapterTime);
+      this.grpChapters.Controls.Add(this.label3);
+      this.grpChapters.Location = new System.Drawing.Point(3, 32);
+      this.grpChapters.Name = "grpChapters";
+      this.grpChapters.Size = new System.Drawing.Size(323, 295);
+      this.grpChapters.TabIndex = 7;
+      this.grpChapters.TabStop = false;
+      this.grpChapters.Text = "Chapters";
+      // 
+      // btnDn
+      // 
+      this.btnDn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnDn.Image = ((System.Drawing.Image)(resources.GetObject("btnDn.Image")));
+      this.btnDn.Location = new System.Drawing.Point(225, 241);
+      this.btnDn.Name = "btnDn";
+      this.btnDn.Size = new System.Drawing.Size(24, 24);
+      this.btnDn.TabIndex = 9;
+      this.btnDn.Click += new System.EventHandler(this.ChapterControls_Click);
+      // 
+      // btnUp
+      // 
+      this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnUp.Image = ((System.Drawing.Image)(resources.GetObject("btnUp.Image")));
+      this.btnUp.Location = new System.Drawing.Point(201, 241);
+      this.btnUp.Name = "btnUp";
+      this.btnUp.Size = new System.Drawing.Size(24, 24);
+      this.btnUp.TabIndex = 8;
+      this.btnUp.Click += new System.EventHandler(this.ChapterControls_Click);
+      // 
+      // btnDelete
+      // 
+      this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+      this.btnDelete.Location = new System.Drawing.Point(281, 241);
+      this.btnDelete.Name = "btnDelete";
+      this.btnDelete.Size = new System.Drawing.Size(24, 24);
+      this.btnDelete.TabIndex = 6;
+      this.btnDelete.Click += new System.EventHandler(this.ChapterControls_Click);
+      // 
+      // btnAdd
+      // 
+      this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+      this.btnAdd.Location = new System.Drawing.Point(257, 241);
+      this.btnAdd.Name = "btnAdd";
+      this.btnAdd.Size = new System.Drawing.Size(24, 24);
+      this.btnAdd.TabIndex = 5;
+      this.btnAdd.Click += new System.EventHandler(this.ChapterControls_Click);
+      // 
+      // splitContainer1
+      // 
+      this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                  | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.splitContainer1.Location = new System.Drawing.Point(3, 2);
+      this.splitContainer1.Name = "splitContainer1";
+      // 
+      // splitContainer1.Panel1
+      // 
+      this.splitContainer1.Panel1.Controls.Add(this.picDb);
+      this.splitContainer1.Panel1.Controls.Add(this.grpChapters);
+      this.splitContainer1.Panel1.Controls.Add(this.txtTitle);
+      this.splitContainer1.Panel1.Controls.Add(this.lblTitle);
+      // 
+      // splitContainer1.Panel2
+      // 
+      this.splitContainer1.Panel2.Controls.Add(this.grpResults);
+      this.splitContainer1.Panel2.Controls.Add(this.btnSearch);
+      this.splitContainer1.Size = new System.Drawing.Size(506, 330);
+      this.splitContainer1.SplitterDistance = 334;
+      this.splitContainer1.TabIndex = 8;
+      // 
+      // picDb
+      // 
+      this.picDb.Image = ((System.Drawing.Image)(resources.GetObject("picDb.Image")));
+      this.picDb.Location = new System.Drawing.Point(302, 9);
+      this.picDb.Name = "picDb";
+      this.picDb.Size = new System.Drawing.Size(16, 16);
+      this.picDb.TabIndex = 8;
+      this.picDb.TabStop = false;
+      this.picDb.Visible = false;
+      // 
+      // grpResults
+      // 
+      this.grpResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                  | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.grpResults.Controls.Add(this.lstResults);
+      this.grpResults.Controls.Add(this.btnLookup);
+      this.grpResults.Location = new System.Drawing.Point(3, 32);
+      this.grpResults.Name = "grpResults";
+      this.grpResults.Size = new System.Drawing.Size(167, 295);
+      this.grpResults.TabIndex = 0;
+      this.grpResults.TabStop = false;
+      this.grpResults.Text = "Results";
+      // 
+      // lstResults
+      // 
+      this.lstResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                  | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.lstResults.FormattingEnabled = true;
+      this.lstResults.Location = new System.Drawing.Point(6, 16);
+      this.lstResults.Name = "lstResults";
+      this.lstResults.Size = new System.Drawing.Size(150, 264);
+      this.lstResults.TabIndex = 0;
+      this.lstResults.SelectedIndexChanged += new System.EventHandler(this.lstResults_SelectedIndexChanged);
+      // 
+      // btnLookup
+      // 
+      this.btnLookup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnLookup.Enabled = false;
+      this.btnLookup.Image = ((System.Drawing.Image)(resources.GetObject("btnLookup.Image")));
+      this.btnLookup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.btnLookup.Location = new System.Drawing.Point(6, 268);
+      this.btnLookup.Name = "btnLookup";
+      this.btnLookup.Size = new System.Drawing.Size(67, 24);
+      this.btnLookup.TabIndex = 10;
+      this.btnLookup.Text = "Lookup";
+      this.btnLookup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.btnLookup.Visible = false;
+      // 
+      // btnSearch
+      // 
+      this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+      this.btnSearch.AutoSize = true;
+      this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+      this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.btnSearch.Location = new System.Drawing.Point(52, 5);
+      this.btnSearch.Name = "btnSearch";
+      this.btnSearch.Size = new System.Drawing.Size(68, 24);
+      this.btnSearch.TabIndex = 9;
+      this.btnSearch.Text = "Search";
+      this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+      this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+      // 
+      // tsslStatus
+      // 
+      this.tsslStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
+      this.tsslStatus.Name = "tsslStatus";
+      this.tsslStatus.Size = new System.Drawing.Size(216, 17);
+      this.tsslStatus.Spring = true;
+      this.tsslStatus.Text = "Ready";
+      this.tsslStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // tsslDuration
+      // 
+      this.tsslDuration.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
+      this.tsslDuration.Name = "tsslDuration";
+      this.tsslDuration.Size = new System.Drawing.Size(122, 17);
+      this.tsslDuration.Text = "Duration: 00:00:00.000";
+      // 
+      // statusStrip1
+      // 
+      this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslStatus,
             this.tsslDuration,
             this.tsslFps,
             this.tsslLang});
-        this.statusStrip1.Location = new System.Drawing.Point(0, 335);
-        this.statusStrip1.Name = "statusStrip1";
-        this.statusStrip1.Size = new System.Drawing.Size(511, 22);
-        this.statusStrip1.TabIndex = 11;
-        this.statusStrip1.Text = "statusStrip1";
-        // 
-        // tsslFps
-        // 
-        this.tsslFps.Name = "tsslFps";
-        this.tsslFps.Size = new System.Drawing.Size(69, 20);
-        this.tsslFps.Text = "29.970fps";
-        // 
-        // tsslLang
-        // 
-        this.tsslLang.Name = "tsslLang";
-        this.tsslLang.Size = new System.Drawing.Size(89, 20);
-        this.tsslLang.Text = "eng (English)";
-        // 
-        // miDatabaseCredentials
-        // 
-        this.miDatabaseCredentials.Index = 6;
-        this.miDatabaseCredentials.Text = "Database Credentials";
-        this.miDatabaseCredentials.Click += new System.EventHandler(this.miDatabaseCredentials_Click);
-        // 
-        // picDb
-        // 
-        this.picDb.Image = ((System.Drawing.Image)(resources.GetObject("picDb.Image")));
-        this.picDb.Location = new System.Drawing.Point(302, 9);
-        this.picDb.Name = "picDb";
-        this.picDb.Size = new System.Drawing.Size(16, 16);
-        this.picDb.TabIndex = 8;
-        this.picDb.TabStop = false;
-        this.picDb.Visible = false;
-        // 
-        // MainForm
-        // 
-        this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-        this.ClientSize = new System.Drawing.Size(511, 357);
-        this.Controls.Add(this.statusStrip1);
-        this.Controls.Add(this.splitContainer1);
-        this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-        this.Menu = this.mainMenu;
-        this.Name = "MainForm";
-        this.Text = "ChapterGrabber";
-        this.Closing += new System.ComponentModel.CancelEventHandler(this.frmMain_Closing);
-        this.Load += new System.EventHandler(this.frmMain_Load);
-        this.grpChapters.ResumeLayout(false);
-        this.grpChapters.PerformLayout();
-        this.splitContainer1.Panel1.ResumeLayout(false);
-        this.splitContainer1.Panel1.PerformLayout();
-        this.splitContainer1.Panel2.ResumeLayout(false);
-        this.splitContainer1.Panel2.PerformLayout();
-        this.splitContainer1.ResumeLayout(false);
-        this.grpResults.ResumeLayout(false);
-        this.statusStrip1.ResumeLayout(false);
-        this.statusStrip1.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)(this.picDb)).EndInit();
-        this.ResumeLayout(false);
-        this.PerformLayout();
+      this.statusStrip1.Location = new System.Drawing.Point(0, 335);
+      this.statusStrip1.Name = "statusStrip1";
+      this.statusStrip1.Size = new System.Drawing.Size(511, 22);
+      this.statusStrip1.TabIndex = 11;
+      this.statusStrip1.Text = "statusStrip1";
+      // 
+      // tsslFps
+      // 
+      this.tsslFps.Name = "tsslFps";
+      this.tsslFps.Size = new System.Drawing.Size(69, 20);
+      this.tsslFps.Text = "29.970fps";
+      // 
+      // tsslLang
+      // 
+      this.tsslLang.Name = "tsslLang";
+      this.tsslLang.Size = new System.Drawing.Size(89, 20);
+      this.tsslLang.Text = "eng (English)";
+      // 
+      // MainForm
+      // 
+      this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+      this.ClientSize = new System.Drawing.Size(511, 357);
+      this.Controls.Add(this.statusStrip1);
+      this.Controls.Add(this.splitContainer1);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+      this.Menu = this.mainMenu;
+      this.Name = "MainForm";
+      this.Text = "ChapterGrabber";
+      this.Closing += new System.ComponentModel.CancelEventHandler(this.frmMain_Closing);
+      this.Load += new System.EventHandler(this.frmMain_Load);
+      this.grpChapters.ResumeLayout(false);
+      this.grpChapters.PerformLayout();
+      this.splitContainer1.Panel1.ResumeLayout(false);
+      this.splitContainer1.Panel1.PerformLayout();
+      this.splitContainer1.Panel2.ResumeLayout(false);
+      this.splitContainer1.Panel2.PerformLayout();
+      this.splitContainer1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.picDb)).EndInit();
+      this.grpResults.ResumeLayout(false);
+      this.statusStrip1.ResumeLayout(false);
+      this.statusStrip1.PerformLayout();
+      this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
     #endregion

@@ -786,5 +786,23 @@ namespace JarrettVance.ChapterTools
         using (DatabaseCredentialsDialog d = new DatabaseCredentialsDialog())
             d.ShowDialog(this);
     }
+
+    private void txtChapterName_KeyDown(object sender, KeyEventArgs e)
+    {
+      if (e.KeyCode == Keys.Enter)
+      {
+        // got to next
+        int i = listChapters.SelectedIndices[0];
+        i++;
+        if (i < listChapters.Items.Count && listChapters.Items[i] != null)
+        {
+          //select it
+          listChapters.Items[i].Selected = true;
+          //scroll to it
+          listChapters.Items[i].EnsureVisible();
+          txtChapterName.SelectAll();
+        }
+      }
+    }
   }
 }
