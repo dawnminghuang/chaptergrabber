@@ -144,7 +144,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Grabbers\ChapterDbGrabber.cs" />
+    <Compile Include="DatabaseCredentialsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatabaseCredentialsDialog.Designer.cs">
+      <DependentUpon>DatabaseCredentialsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Grabbers\DatabaseGrabber.cs" />
     <Compile Include="Updater.cs" />
     <Content Include="Icon.ico" />
     <Content Include="Readme.txt">
@@ -159,11 +165,11 @@
     <Compile Include="Extractors\BDInfo\TSStreamClipFile.cs" />
     <Compile Include="Extractors\HddvdExtractor.cs" />
     <Compile Include="Extractors\XplExtractor.cs" />
-    <Compile Include="frmAboutBox.cs">
+    <Compile Include="AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAboutBox.Designer.cs">
-      <DependentUpon>frmAboutBox.cs</DependentUpon>
+    <Compile Include="AboutDialog.Designer.cs">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -178,17 +184,17 @@
     <Compile Include="Extractors\IfoUtil.cs" />
     <Compile Include="Extractors\MplsExtractor.cs" />
     <Compile Include="Extractors\TextExtractor.cs" />
-    <Compile Include="frmMain.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmStreamSelect.cs">
+    <Compile Include="StreamSelectDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmStreamSelect.Designer.cs">
-      <DependentUpon>frmStreamSelect.cs</DependentUpon>
+    <Compile Include="StreamSelectDialog.Designer.cs">
+      <DependentUpon>StreamSelectDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UpdateForm.cs">
       <SubType>Form</SubType>
@@ -233,14 +239,17 @@
     <Content Include="Updater.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="frmAboutBox.resx">
-      <DependentUpon>frmAboutBox.cs</DependentUpon>
+    <EmbeddedResource Include="AboutDialog.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <EmbeddedResource Include="DatabaseCredentialsDialog.resx">
+      <DependentUpon>DatabaseCredentialsDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmStreamSelect.resx">
-      <DependentUpon>frmStreamSelect.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StreamSelectDialog.resx">
+      <DependentUpon>StreamSelectDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateForm.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>

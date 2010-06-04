@@ -13,6 +13,16 @@ You must have .NET Framework 3.5 available from Windows Update.
 
 Whats New?
 --------------------
+2010-06-04 : v4.3
+Queue database work to keep from slowing UI down
+Show animation while waiting on database work
+Fix import from clipboard for chapters copied from spun website
+
+2010-06-03 : v4.2
+Added new online database support from chapterdb.org
+Names automatically loaded when found in database
+Database automatically updated upon save
+
 2010-05-14 : v4.1
 Added automatic application updater that downloads and installs new updates
 

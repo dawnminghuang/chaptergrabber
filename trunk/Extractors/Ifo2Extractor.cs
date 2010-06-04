@@ -5,6 +5,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace JarrettVance.ChapterTools.Extractors
 {
@@ -36,6 +37,7 @@ namespace JarrettVance.ChapterTools.Extractors
       pgc.SourceType = "DVD";
       pgc.SourceName = location;
       pgc.SourceHash = ChapterExtractor.ComputeMD5Sum(location);
+      pgc.Extractor = Application.ProductName + " " + Application.ProductVersion;
       pgc.Title = Path.GetFileNameWithoutExtension(location);
       OnStreamDetected(pgc);
 

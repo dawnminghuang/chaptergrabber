@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Diagnostics;
 using BDInfo;
+using System.Windows.Forms;
 
 namespace JarrettVance.ChapterTools.Extractors
 {
@@ -28,6 +29,7 @@ namespace JarrettVance.ChapterTools.Extractors
       pgc.SourceName = location;
       pgc.Title = Path.GetFileNameWithoutExtension(location);
       pgc.SourceType = "Blu-Ray";
+      pgc.Extractor = Application.ProductName + " " + Application.ProductVersion;
 
       FileInfo fileInfo = new FileInfo(location);
       

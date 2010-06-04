@@ -88,7 +88,12 @@ namespace JarrettVance.ChapterTools.Grabbers
       );
     }
 
-    public override ChapterInfo DirectHit(string hash)
+    public override void PopulateNames(string hash, ChapterInfo info)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void Upload(ChapterInfo chapterInfo)
     {
         throw new NotImplementedException();
     }

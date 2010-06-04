@@ -73,5 +73,17 @@
     <Setting Name="RemoteManifest" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://jvance.com/files/ChapterGrabber.manifest</Value>
     </Setting>
+    <Setting Name="AutoUseDatabase" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DatabaseSite" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://www.chapterdb.org</Value>
+    </Setting>
+    <Setting Name="DatabaseApiKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">a784c7d08e5fe192ca247d1a2dd5c27f</Value>
+    </Setting>
+    <Setting Name="DatabaseUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">john@example.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

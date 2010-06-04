@@ -84,6 +84,7 @@ namespace JarrettVance.ChapterTools
 
 		public static void ImportFromClipboard(List<ChapterEntry> chapters, string clipboard, bool includeDuration)
 		{
+            clipboard = clipboard.Replace("\t", string.Empty);
       for (int i = 0; i < chapters.Count; i++)
         chapters[i] = new ChapterEntry() { Time = chapters[i].Time, Name = ExtractFromCopy(clipboard, i + 1, includeDuration) };
 		}

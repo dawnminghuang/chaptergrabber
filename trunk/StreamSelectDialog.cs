@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace JarrettVance.ChapterTools
 {
-  public partial class frmStreamSelect : Form
+  public partial class StreamSelectDialog : Form
   {
-    public frmStreamSelect(ChapterExtractor extractor)
+    public StreamSelectDialog(ChapterExtractor extractor)
     {
       InitializeComponent();
 

@@ -7,10 +7,15 @@ namespace JarrettVance.ChapterTools
 {
   public abstract class ChapterGrabber
   {
+      public static List<ChapterGrabber> Grabbers = new List<ChapterGrabber> { new Grabbers.TagChimpGrabber(), new Grabbers.DatabaseGrabber() };
+
     public abstract void PopulateNames(SearchResult result, ChapterInfo chapterInfo, bool includeDurations);
+    public abstract void PopulateNames(string hash, ChapterInfo chapterInfo);
     public abstract List<SearchResult> Search(ChapterInfo chapterInfo);
-    public abstract ChapterInfo DirectHit(string hash);
+    public abstract void Upload(ChapterInfo chapterInfo);
+
     public bool SupportsHash { get; set; }
+    public bool SupportsUpload { get; set; }
 
     public event EventHandler SearchComplete;
 
