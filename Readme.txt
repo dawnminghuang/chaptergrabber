@@ -13,6 +13,11 @@ You must have .NET Framework 3.5 available from Windows Update.
 
 Whats New?
 --------------------
+2010-06-04 : v4.4
+Queue search so interface stays responsive (add wait indicator)
+Add new support for choosing correct title with help of Google
+Title indictor for when good title chosen
+
 2010-06-04 : v4.3
 Queue database work to keep from slowing UI down
 Show animation while waiting on database work

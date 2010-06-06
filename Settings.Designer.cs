@@ -106,7 +106,7 @@ namespace JarrettVance.ChapterTools {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.2")]
         public string ConfigVersion {
             get {
                 return ((string)(this["ConfigVersion"]));

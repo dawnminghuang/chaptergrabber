@@ -50,6 +50,53 @@ namespace JarrettVance.ChapterTools
 			return time;
 		}
 
+        private static IEnumerable<string> GoogleTitle(string title)
+        {
+            string json = string.Empty;
+            using (var web = new WebClient())
+            {
+                json = web.DownloadString(string.Format(
+                    "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q={0}",
+                    Uri.EscapeUriString(title + " movie")));
+            }
+
+            // {"responseData": {"results":[{"GsearchResultClass":"GwebSearch","unescapedUrl":"http://www.imdb.com/title/tt0253867/","url":"http://www.imdb.com/title/tt0253867/","visibleUrl":"www.imdb.com","cacheUrl":"http://www.google.com/search?q\u003dcache:pd6Fc1Wx1TgJ:www.imdb.com","title":"The Sweetest \u003cb\u003eThing\u003c/b\u003e (2002)","titleNoFormatting":"The Sweetest Thing (2002)","content":"The Sweetest \u003cb\u003eThing\u003c/b\u003e -- A girl finds she is forced to educate herself on the \u003cb\u003e....\u003c/b\u003e   Not a family \u003cb\u003emovie\u003c/b\u003e. It\u0026#39;s meant more for the dirty-minded, if you will. :) \u003cb\u003e...\u003c/b\u003e"},{"GsearchResultClass":"GwebSearch","unescapedUrl":"http://www.imdb.com/title/tt0159780/","url":"http://www.imdb.com/title/tt0159780/","visibleUrl":"www.imdb.com","cacheUrl":"http://www.google.com/search?q\u003dcache:rUCUtqkJtW8J:www.imdb.com","title":"\u003cb\u003eSweet Thing\u003c/b\u003e (1999)","titleNoFormatting":"Sweet Thing (1999)","content":"Contact: View company contact information for \u003cb\u003eSweet Thing\u003c/b\u003e on IMDbPro. \u003cb\u003e...\u003c/b\u003e   Discuss this \u003cb\u003emovie\u003c/b\u003e with other users on IMDb message board for \u003cb\u003eSweet Thing\u003c/b\u003e (1999)   \u003cb\u003e...\u003c/b\u003e"},{"GsearchResultClass":"GwebSearch","unescapedUrl":"http://www.shamelove.com/sweetthing/","url":"http://www.shamelove.com/sweetthing/","visibleUrl":"www.shamelove.com","cacheUrl":"http://www.google.com/search?q\u003dcache:vDT6ygU4kGgJ:www.shamelove.com","title":"\u003cb\u003eSweet Thing\u003c/b\u003e","titleNoFormatting":"Sweet Thing","content":"Nineteen-year-old free spirit Liz is on a mission to find love in between her   shifts at an espresso drive-thru. Across town, Jody seeks answers in drugs \u003cb\u003e...\u003c/b\u003e"},{"GsearchResultClass":"GwebSearch","unescapedUrl":"http://www.myspace.com/sweetthingmovie","url":"http://www.myspace.com/sweetthingmovie","visibleUrl":"www.myspace.com","cacheUrl":"http://www.google.com/search?q\u003dcache:W-BSYXt76PoJ:www.myspace.com","title":"\u003cb\u003eSWEET THING\u003c/b\u003e on MySpace Films - New Films \u0026amp; Documentaries","titleNoFormatting":"SWEET THING on MySpace Films - New Films \u0026amp; Documentaries","content":"MySpace Filmmaker profile for \u003cb\u003eSWEET THING\u003c/b\u003e. Watch, \u003cb\u003emovie\u003c/b\u003e clips \u0026amp; trailers from   \u003cb\u003eSWEET THING\u003c/b\u003e, including films, movies \u0026amp; documentaries."}],"cursor":{"pages":[{"start":"0","label":1},{"start":"4","label":2},{"start":"8","label":3},{"start":"12","label":4},{"start":"16","label":5},{"start":"20","label":6},{"start":"24","label":7},{"start":"28","label":8}],"estimatedResultCount":"1840000","currentPageIndex":0,"moreResultsUrl":"http://www.google.com/search?oe\u003dutf8\u0026ie\u003dutf8\u0026source\u003duds\u0026start\u003d0\u0026hl\u003den\u0026q\u003dsweet+thing+movie"}}, "responseDetails": null, "responseStatus": 200}
+            int idx = 0;
+            string search = "titleNoFormatting\":\"";
+            while (idx > -1)
+            {
+
+                idx = json.IndexOf(search, idx);
+                if (idx > 0)
+                {
+                    idx = idx + search.Length;
+                    int length = json.IndexOf('"', idx) - idx;
+                    string t = json.Substring(idx, length);
+                    yield return t.Trim().Replace("\\u0026amp;", "&");
+                }
+            }
+        }
+
+        public static List<KeyValuePair<int, string>> SuggestTitles(string title)
+        {
+            return Grabber.FilterMovieTitles(Grabber.GoogleTitle(title))
+                .GroupBy(k => k.Value).Select(k => new KeyValuePair<int, string>(k.Sum(t => t.Key), k.Key))
+                .OrderByDescending(k => k.Key).ToList();
+        }
+
+        public static IEnumerable<KeyValuePair<int, string>> FilterMovieTitles(IEnumerable<string> titles)
+        {
+            foreach (string t in titles)
+            {
+                if (t.IndexOf(" (20") > 0) yield return new KeyValuePair<int, string>(1, t.Substring(0, t.IndexOf(" (20")));
+                else if (t.IndexOf(" (19") > 0) yield return new KeyValuePair<int, string>(1, t.Substring(0, t.IndexOf(" (19")));
+                else if (t.IndexOf(" (film) - Wikipedia") > 0) yield return new KeyValuePair<int, string>(1, t.Substring(0, t.IndexOf(" (film) - Wikipedia")));
+                else if (t.IndexOf(" - Wikipedia") > 0) yield return new KeyValuePair<int, string>(1, t.Substring(0, t.IndexOf(" - Wikipedia")));
+                else if (t.IndexOf(" Movie Reviews") > 0) yield return new KeyValuePair<int, string>(1, t.Substring(0, t.IndexOf(" Movie Reviews")));
+                else yield return new KeyValuePair<int, string>(0, t);
+            }
+        }
+
 
     //public static List<Chapter> LoadTextChapters(string filename)
     //{
