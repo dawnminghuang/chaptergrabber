@@ -236,6 +236,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="undo green.png" />
+    <None Include="undo red.png" />
+    <None Include="undo yellow.png" />
+    <None Include="Resources\star.png" />
     <Content Include="Updater.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

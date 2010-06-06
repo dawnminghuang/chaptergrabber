@@ -20,26 +20,22 @@
 *
 ********************************************************************************/
 using System;
-using System.Drawing;
 using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using JarrettVance.ChapterTools;
-using System.IO;
 using System.Collections.Generic;
-using System.Xml.Linq;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Threading;
-using System.Diagnostics;
-using JarrettVance.ChapterTools.Extractors;
 using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Windows.Forms;
+using System.Xml.Linq;
 using BDInfo;
+using JarrettVance.ChapterTools.Extractors;
 using JarrettVance.ChapterTools.Grabbers;
 using NDepend.Helpers.FileDirectoryPath;
-using System.Globalization;
-using System.Reflection;
+
 namespace JarrettVance.ChapterTools
 {
   /// <summary>
@@ -52,6 +48,8 @@ namespace JarrettVance.ChapterTools
     private ChapterGrabber grabber = null;
     private ChapterInfo pgc;
     private int intIndex;
+    private volatile bool dbWait, titleWait = false;
+
 
     private void frmMain_Load(object sender, System.EventArgs e)
     {
@@ -260,6 +258,7 @@ namespace JarrettVance.ChapterTools
     private void UpdateDatabase(ChapterInfo pgc)
     {
         picDb.Visible = true;
+        dbWait = true;
         //duplicate
         ChapterInfo ci = ChapterInfo.Load(pgc.ToXElement());
         ThreadPool.QueueUserWorkItem((w) =>
@@ -271,8 +270,8 @@ namespace JarrettVance.ChapterTools
                     foreach (ChapterGrabber g in ChapterGrabber.Grabbers)
                         if (g.SupportsUpload) g.Upload(ci);
                 }
-
-                Invoke(new Action(() => picDb.Visible = false));
+                dbWait = false;
+                Invoke(new Action(() => picDb.Visible = titleWait || dbWait));
             });
     }
 
@@ -442,6 +441,7 @@ namespace JarrettVance.ChapterTools
 
     private void AutoLoadNames()
     {
+        dbWait = false;
         picDb.Visible = true;
         ThreadPool.QueueUserWorkItem((w) =>
             {
@@ -459,7 +459,8 @@ namespace JarrettVance.ChapterTools
                             }
                     }
                 }
-                Invoke(new Action(() => picDb.Visible = false));
+                dbWait = false;
+                Invoke(new Action(() => picDb.Visible = titleWait || dbWait));
             });
     }
 
@@ -627,17 +628,34 @@ namespace JarrettVance.ChapterTools
     {
       Cursor = Cursors.WaitCursor;
       tsslStatus.Text = "Searching for chapter names...";
+      picSearch.Visible = true;
       try
       {
         if (string.IsNullOrEmpty(txtTitle.Text))
           throw new Exception("You must supply a title to search for chapter names.");
 
-        var titles = grabber.Search(pgc);
-        lstResults.Items.Clear();
-        lstResults.Items.AddRange(titles.ToArray());
-        lstResults.ValueMember = "Id";
-        lstResults.DisplayMember = "Name";
-        tsslStatus.Text = string.Format("Search returned {0} result(s).", titles.Count);
+          Action<List<SearchResult>> a = (titles) =>
+          {
+            lstResults.Items.Clear();
+            lstResults.Items.AddRange(titles.ToArray());
+            lstResults.ValueMember = "Id";
+            lstResults.DisplayMember = "Name";
+            tsslStatus.Text = string.Format("Search returned {0} result(s).", titles.Count);
+            picSearch.Visible = false;
+            Cursor = Cursors.Default;
+          };
+        ThreadPool.QueueUserWorkItem((w) =>
+            {
+                try
+                {
+                    var titles = grabber.Search(pgc);
+                    Invoke(a, titles);
+                }
+                catch (Exception ex)
+                {
+                    Invoke(new Action<Exception>(SearchError), ex);
+                }
+            });
       }
       catch (Exception ex)
       {
@@ -645,10 +663,13 @@ namespace JarrettVance.ChapterTools
         MessageBox.Show(ex.Message, "Error");
         tsslStatus.Text = "Failed to search for chapter names.";
       }
-      finally
-      {
-        Cursor = Cursors.Default;
-      }
+    }
+
+    private void SearchError(Exception ex)
+    {
+        Trace.WriteLine(ex);
+        MessageBox.Show(ex.Message, "Error");
+        tsslStatus.Text = "Failed to search for chapter names.";
     }
 
     private void btnSearch_Click(object sender, EventArgs e)
@@ -755,6 +776,61 @@ namespace JarrettVance.ChapterTools
     private void txtTitle_TextChanged(object sender, EventArgs e)
     {
       pgc.Title = txtTitle.Text;
+      picDb.Visible = true;
+      titleWait = true;
+      ThreadPool.QueueUserWorkItem((w) =>
+          {
+              var titles = Grabber.SuggestTitles(pgc.Title);
+              Invoke(new Action<List<KeyValuePair<int, string>>>(UpdateTitles), titles);
+          });
+    }
+
+    private void UpdateTitles(List<KeyValuePair<int, string>> titles)
+    { 
+      menuTitles.Items.Clear();
+
+      foreach (var t in titles)
+      {
+          menuTitles.Items.Add(t.Value.Replace("&", "&&"), t.Key > 0 ? Properties.Resources.star : null, (o, s) =>
+              {
+                  pgc.Title = ((ToolStripItem)o).Text.Replace("&&", "&");
+                  txtTitle.TextChanged -= new EventHandler(txtTitle_TextChanged);
+                  txtTitle.Text = pgc.Title;
+                  txtTitle.TextChanged += new EventHandler(txtTitle_TextChanged);
+                  if (((ToolStripItem)o).Image != null) btnTitles.Image = Properties.Resources.undo_green;
+              });
+      }
+        int num = -1;
+        if (titles.Count > 0 && titles[0].Value == pgc.Title) SetGoodTitle();
+        else if (int.TryParse(pgc.Title, out num)) SetBadTitle();
+        else if (pgc.Title.StartsWith("VTS_")) SetBadTitle();
+        else if (pgc.Title == "Main Movie") SetBadTitle();
+        else if (titles.Where(t => t.Value.Contains(pgc.Title)).Count() > 0) SetOkTitle();
+        else SetBadTitle();
+
+        titleWait = false;
+      picDb.Visible = titleWait || dbWait;
+    }
+
+    private void SetGoodTitle()
+    {
+        btnTitles.Image = Properties.Resources.undo_green;
+        toolTipTitle.ToolTipTitle = "Good Title";
+        toolTipTitle.SetToolTip(btnTitles, "You've entered a good title.");
+    }
+
+    private void SetOkTitle()
+    {
+        btnTitles.Image = Properties.Resources.undo_yellow;
+        toolTipTitle.ToolTipTitle = "OK Title";
+        toolTipTitle.SetToolTip(btnTitles, "Click to choose a better title.");
+    }
+
+    private void SetBadTitle()
+    {
+        btnTitles.Image = Properties.Resources.undo_red;
+        toolTipTitle.ToolTipTitle = "Bad Title";
+        toolTipTitle.SetToolTip(btnTitles, "Please enter a good movie title.");
     }
 
     private void miUpdate_Click(object sender, EventArgs e)
@@ -803,6 +879,11 @@ namespace JarrettVance.ChapterTools
           txtChapterName.SelectAll();
         }
       }
+    }
+
+    private void btnTitles_Click(object sender, EventArgs e)
+    {
+      btnTitles.ContextMenuStrip.Show(btnTitles, new Point(0, btnTitles.Height));
     }
   }
 }

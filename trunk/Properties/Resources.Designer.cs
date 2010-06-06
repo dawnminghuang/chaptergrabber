@@ -59,5 +59,33 @@ namespace JarrettVance.ChapterTools.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap star {
+            get {
+                object obj = ResourceManager.GetObject("star", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap undo_green {
+            get {
+                object obj = ResourceManager.GetObject("undo green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap undo_red {
+            get {
+                object obj = ResourceManager.GetObject("undo red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap undo_yellow {
+            get {
+                object obj = ResourceManager.GetObject("undo yellow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
