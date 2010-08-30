@@ -25,7 +25,8 @@ namespace JarrettVance.ChapterTools {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.SettingsManageabilityAttribute(global::System.Configuration.SettingsManageability.Roaming)]
         public bool ImportDurations {
             get {
                 return ((bool)(this["ImportDurations"]));
@@ -38,6 +39,7 @@ namespace JarrettVance.ChapterTools {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.SettingsManageabilityAttribute(global::System.Configuration.SettingsManageability.Roaming)]
         public bool IgnoreShortLastChapter {
             get {
                 return ((bool)(this["IgnoreShortLastChapter"]));
@@ -106,7 +108,7 @@ namespace JarrettVance.ChapterTools {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.5")]
         public string ConfigVersion {
             get {
                 return ((string)(this["ConfigVersion"]));
@@ -116,6 +118,7 @@ namespace JarrettVance.ChapterTools {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(".chapters")]
+        [global::System.Configuration.SettingsManageabilityAttribute(global::System.Configuration.SettingsManageability.Roaming)]
         public string LastSaveExt {
             get {
                 return ((string)(this["LastSaveExt"]));
@@ -177,6 +180,7 @@ namespace JarrettVance.ChapterTools {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.SettingsManageabilityAttribute(global::System.Configuration.SettingsManageability.Roaming)]
         public int LastSaveFilterIndex {
             get {
                 return ((int)(this["LastSaveFilterIndex"]));
@@ -213,6 +217,7 @@ namespace JarrettVance.ChapterTools {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.SettingsManageabilityAttribute(global::System.Configuration.SettingsManageability.Roaming)]
         public bool AutoUseDatabase {
             get {
                 return ((bool)(this["AutoUseDatabase"]));
@@ -225,6 +230,7 @@ namespace JarrettVance.ChapterTools {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://www.chapterdb.org")]
+        [global::System.Configuration.SettingsManageabilityAttribute(global::System.Configuration.SettingsManageability.Roaming)]
         public string DatabaseSite {
             get {
                 return ((string)(this["DatabaseSite"]));
@@ -237,6 +243,7 @@ namespace JarrettVance.ChapterTools {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("a784c7d08e5fe192ca247d1a2dd5c27f")]
+        [global::System.Configuration.SettingsManageabilityAttribute(global::System.Configuration.SettingsManageability.Roaming)]
         public string DatabaseApiKey {
             get {
                 return ((string)(this["DatabaseApiKey"]));
@@ -249,12 +256,25 @@ namespace JarrettVance.ChapterTools {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("john@example.com")]
+        [global::System.Configuration.SettingsManageabilityAttribute(global::System.Configuration.SettingsManageability.Roaming)]
         public string DatabaseUserName {
             get {
                 return ((string)(this["DatabaseUserName"]));
             }
             set {
                 this["DatabaseUserName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool WarnInvalidTitle {
+            get {
+                return ((bool)(this["WarnInvalidTitle"]));
+            }
+            set {
+                this["WarnInvalidTitle"] = value;
             }
         }
     }

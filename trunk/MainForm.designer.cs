@@ -157,6 +157,7 @@ namespace JarrettVance.ChapterTools
         this.label3 = new System.Windows.Forms.Label();
         this.grpChapters = new System.Windows.Forms.GroupBox();
         this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+        this.menuTitles = new System.Windows.Forms.ContextMenuStrip(this.components);
         this.grpResults = new System.Windows.Forms.GroupBox();
         this.lstResults = new System.Windows.Forms.ListBox();
         this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -166,7 +167,7 @@ namespace JarrettVance.ChapterTools
         this.tsslLang = new System.Windows.Forms.ToolStripDropDownButton();
         this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
         this.toolTipTitle = new System.Windows.Forms.ToolTip(this.components);
-        this.menuTitles = new System.Windows.Forms.ContextMenuStrip(this.components);
+        this.miWarnInvalidTitle = new System.Windows.Forms.MenuItem();
         this.btnTitles = new System.Windows.Forms.Button();
         this.picDb = new System.Windows.Forms.PictureBox();
         this.btnDn = new System.Windows.Forms.Button();
@@ -276,7 +277,8 @@ namespace JarrettVance.ChapterTools
             this.menuItem2,
             this.miImportDurations,
             this.miIgnoreShortLastChapter,
-            this.miAutoUseDb});
+            this.miAutoUseDb,
+            this.miWarnInvalidTitle});
         this.menuEdit.Text = "Edit";
         // 
         // menuResetNames
@@ -327,9 +329,8 @@ namespace JarrettVance.ChapterTools
         // 
         // miImportDurations
         // 
-        this.miImportDurations.Checked = true;
         this.miImportDurations.Index = 8;
-        this.miImportDurations.Text = "Import Duration on Names";
+        this.miImportDurations.Text = "Import Duration with Names";
         this.miImportDurations.Click += new System.EventHandler(this.menuEditTimesImport_Click);
         // 
         // miIgnoreShortLastChapter
@@ -343,7 +344,7 @@ namespace JarrettVance.ChapterTools
         // 
         this.miAutoUseDb.Checked = true;
         this.miAutoUseDb.Index = 10;
-        this.miAutoUseDb.Text = "Automatically Use Database";
+        this.miAutoUseDb.Text = "Sync Online Database";
         this.miAutoUseDb.Click += new System.EventHandler(this.miAutoUseDb_Click);
         // 
         // menuHelp
@@ -414,7 +415,7 @@ namespace JarrettVance.ChapterTools
         this.listChapters.Location = new System.Drawing.Point(9, 16);
         this.listChapters.MultiSelect = false;
         this.listChapters.Name = "listChapters";
-        this.listChapters.Size = new System.Drawing.Size(305, 198);
+        this.listChapters.Size = new System.Drawing.Size(305, 277);
         this.listChapters.TabIndex = 10;
         this.listChapters.UseCompatibleStateImageBehavior = false;
         this.listChapters.View = System.Windows.Forms.View.Details;
@@ -424,7 +425,7 @@ namespace JarrettVance.ChapterTools
         // 
         this.txtChapterName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-        this.txtChapterName.Location = new System.Drawing.Point(48, 247);
+        this.txtChapterName.Location = new System.Drawing.Point(48, 326);
         this.txtChapterName.MaxLength = 300;
         this.txtChapterName.Name = "txtChapterName";
         this.txtChapterName.Size = new System.Drawing.Size(258, 20);
@@ -436,7 +437,7 @@ namespace JarrettVance.ChapterTools
         // label6
         // 
         this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-        this.label6.Location = new System.Drawing.Point(8, 249);
+        this.label6.Location = new System.Drawing.Point(8, 328);
         this.label6.Name = "label6";
         this.label6.Size = new System.Drawing.Size(48, 16);
         this.label6.TabIndex = 3;
@@ -447,7 +448,7 @@ namespace JarrettVance.ChapterTools
         // 
         this.txtChapterTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-        this.txtChapterTime.Location = new System.Drawing.Point(48, 223);
+        this.txtChapterTime.Location = new System.Drawing.Point(48, 302);
         this.txtChapterTime.MaxLength = 12;
         this.txtChapterTime.Name = "txtChapterTime";
         this.txtChapterTime.Size = new System.Drawing.Size(135, 20);
@@ -458,7 +459,7 @@ namespace JarrettVance.ChapterTools
         // label3
         // 
         this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-        this.label3.Location = new System.Drawing.Point(8, 225);
+        this.label3.Location = new System.Drawing.Point(8, 304);
         this.label3.Name = "label3";
         this.label3.Size = new System.Drawing.Size(48, 16);
         this.label3.TabIndex = 1;
@@ -481,7 +482,7 @@ namespace JarrettVance.ChapterTools
         this.grpChapters.Controls.Add(this.label3);
         this.grpChapters.Location = new System.Drawing.Point(3, 32);
         this.grpChapters.Name = "grpChapters";
-        this.grpChapters.Size = new System.Drawing.Size(323, 274);
+        this.grpChapters.Size = new System.Drawing.Size(323, 353);
         this.grpChapters.TabIndex = 7;
         this.grpChapters.TabStop = false;
         this.grpChapters.Text = "Chapters";
@@ -507,9 +508,14 @@ namespace JarrettVance.ChapterTools
         this.splitContainer1.Panel2.Controls.Add(this.picSearch);
         this.splitContainer1.Panel2.Controls.Add(this.grpResults);
         this.splitContainer1.Panel2.Controls.Add(this.btnSearch);
-        this.splitContainer1.Size = new System.Drawing.Size(506, 309);
+        this.splitContainer1.Size = new System.Drawing.Size(506, 388);
         this.splitContainer1.SplitterDistance = 334;
         this.splitContainer1.TabIndex = 8;
+        // 
+        // menuTitles
+        // 
+        this.menuTitles.Name = "menuTitles";
+        this.menuTitles.Size = new System.Drawing.Size(61, 4);
         // 
         // grpResults
         // 
@@ -520,7 +526,7 @@ namespace JarrettVance.ChapterTools
         this.grpResults.Controls.Add(this.btnLookup);
         this.grpResults.Location = new System.Drawing.Point(3, 32);
         this.grpResults.Name = "grpResults";
-        this.grpResults.Size = new System.Drawing.Size(167, 274);
+        this.grpResults.Size = new System.Drawing.Size(167, 353);
         this.grpResults.TabIndex = 0;
         this.grpResults.TabStop = false;
         this.grpResults.Text = "Results";
@@ -533,7 +539,7 @@ namespace JarrettVance.ChapterTools
         this.lstResults.FormattingEnabled = true;
         this.lstResults.Location = new System.Drawing.Point(6, 16);
         this.lstResults.Name = "lstResults";
-        this.lstResults.Size = new System.Drawing.Size(150, 238);
+        this.lstResults.Size = new System.Drawing.Size(150, 316);
         this.lstResults.TabIndex = 0;
         this.lstResults.SelectedIndexChanged += new System.EventHandler(this.lstResults_SelectedIndexChanged);
         // 
@@ -560,7 +566,7 @@ namespace JarrettVance.ChapterTools
             this.tsslDuration,
             this.tsslFps,
             this.tsslLang});
-        this.statusStrip1.Location = new System.Drawing.Point(0, 314);
+        this.statusStrip1.Location = new System.Drawing.Point(0, 393);
         this.statusStrip1.Name = "statusStrip1";
         this.statusStrip1.Size = new System.Drawing.Size(511, 22);
         this.statusStrip1.TabIndex = 11;
@@ -582,16 +588,17 @@ namespace JarrettVance.ChapterTools
         // 
         this.toolTipTitle.ToolTipTitle = "Title Invalid";
         // 
-        // menuTitles
+        // miWarnInvalidTitle
         // 
-        this.menuTitles.Name = "menuTitles";
-        this.menuTitles.Size = new System.Drawing.Size(61, 4);
+        this.miWarnInvalidTitle.Checked = true;
+        this.miWarnInvalidTitle.Index = 11;
+        this.miWarnInvalidTitle.Text = "Check Valid Title Upon Save";
         // 
         // btnTitles
         // 
         this.btnTitles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
         this.btnTitles.ContextMenuStrip = this.menuTitles;
-        this.btnTitles.Image = global::JarrettVance.ChapterTools.Properties.Resources.undo_green;
+        this.btnTitles.Image = global::JarrettVance.ChapterTools.Properties.Resources.apply_bad;
         this.btnTitles.Location = new System.Drawing.Point(267, 5);
         this.btnTitles.Name = "btnTitles";
         this.btnTitles.Size = new System.Drawing.Size(24, 24);
@@ -610,12 +617,13 @@ namespace JarrettVance.ChapterTools
         this.picDb.TabIndex = 8;
         this.picDb.TabStop = false;
         this.toolTip1.SetToolTip(this.picDb, "Database syncing...");
+        this.picDb.Visible = false;
         // 
         // btnDn
         // 
         this.btnDn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        this.btnDn.Image = ((System.Drawing.Image)(resources.GetObject("btnDn.Image")));
-        this.btnDn.Location = new System.Drawing.Point(225, 220);
+        this.btnDn.Image = global::JarrettVance.ChapterTools.Properties.Resources.arrow_down;
+        this.btnDn.Location = new System.Drawing.Point(225, 299);
         this.btnDn.Name = "btnDn";
         this.btnDn.Size = new System.Drawing.Size(24, 24);
         this.btnDn.TabIndex = 9;
@@ -625,8 +633,8 @@ namespace JarrettVance.ChapterTools
         // btnUp
         // 
         this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        this.btnUp.Image = ((System.Drawing.Image)(resources.GetObject("btnUp.Image")));
-        this.btnUp.Location = new System.Drawing.Point(201, 220);
+        this.btnUp.Image = global::JarrettVance.ChapterTools.Properties.Resources.arrow_up;
+        this.btnUp.Location = new System.Drawing.Point(201, 299);
         this.btnUp.Name = "btnUp";
         this.btnUp.Size = new System.Drawing.Size(24, 24);
         this.btnUp.TabIndex = 8;
@@ -636,8 +644,8 @@ namespace JarrettVance.ChapterTools
         // btnDelete
         // 
         this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-        this.btnDelete.Location = new System.Drawing.Point(281, 220);
+        this.btnDelete.Image = global::JarrettVance.ChapterTools.Properties.Resources.delete;
+        this.btnDelete.Location = new System.Drawing.Point(281, 299);
         this.btnDelete.Name = "btnDelete";
         this.btnDelete.Size = new System.Drawing.Size(24, 24);
         this.btnDelete.TabIndex = 6;
@@ -647,8 +655,8 @@ namespace JarrettVance.ChapterTools
         // btnAdd
         // 
         this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-        this.btnAdd.Location = new System.Drawing.Point(257, 220);
+        this.btnAdd.Image = global::JarrettVance.ChapterTools.Properties.Resources.add;
+        this.btnAdd.Location = new System.Drawing.Point(257, 299);
         this.btnAdd.Name = "btnAdd";
         this.btnAdd.Size = new System.Drawing.Size(24, 24);
         this.btnAdd.TabIndex = 5;
@@ -698,7 +706,7 @@ namespace JarrettVance.ChapterTools
         // MainForm
         // 
         this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-        this.ClientSize = new System.Drawing.Size(511, 336);
+        this.ClientSize = new System.Drawing.Size(511, 415);
         this.Controls.Add(this.statusStrip1);
         this.Controls.Add(this.splitContainer1);
         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -742,6 +750,7 @@ namespace JarrettVance.ChapterTools
     private PictureBox picSearch;
     private ToolTip toolTipTitle;
     private ContextMenuStrip menuTitles;
+    private MenuItem miWarnInvalidTitle;
   }
 }
 
