@@ -68,6 +68,7 @@ namespace JarrettVance.ChapterTools
         {
           Trace.WriteLine("Upgrading settings from previous version.");
           Settings.Default.Upgrade();
+          Settings.Default.Save();
         }
       }
       catch (Exception ex)
@@ -797,7 +798,7 @@ namespace JarrettVance.ChapterTools
                   txtTitle.TextChanged -= new EventHandler(txtTitle_TextChanged);
                   txtTitle.Text = pgc.Title;
                   txtTitle.TextChanged += new EventHandler(txtTitle_TextChanged);
-                  if (((ToolStripItem)o).Image != null) btnTitles.Image = Properties.Resources.undo_green;
+                  if (((ToolStripItem)o).Image != null) btnTitles.Image = Properties.Resources.apply_good;
               });
       }
         int num = -1;
@@ -814,21 +815,21 @@ namespace JarrettVance.ChapterTools
 
     private void SetGoodTitle()
     {
-        btnTitles.Image = Properties.Resources.undo_green;
+        btnTitles.Image = Properties.Resources.apply_good;
         toolTipTitle.ToolTipTitle = "Good Title";
         toolTipTitle.SetToolTip(btnTitles, "You've entered a good title.");
     }
 
     private void SetOkTitle()
     {
-        btnTitles.Image = Properties.Resources.undo_yellow;
+        btnTitles.Image = Properties.Resources.apply_ok;
         toolTipTitle.ToolTipTitle = "OK Title";
         toolTipTitle.SetToolTip(btnTitles, "Click to choose a better title.");
     }
 
     private void SetBadTitle()
     {
-        btnTitles.Image = Properties.Resources.undo_red;
+        btnTitles.Image = Properties.Resources.apply_bad;
         toolTipTitle.ToolTipTitle = "Bad Title";
         toolTipTitle.SetToolTip(btnTitles, "Please enter a good movie title.");
     }
